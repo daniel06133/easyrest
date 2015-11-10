@@ -1,5 +1,6 @@
 package BaseDeDatos;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
@@ -63,14 +64,26 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 				+ ") REFERENCES " + menuTable + " (" + colIdMenu + "));");
 		
 		
-		/*
+		
 		db.execSQL("CREATE TRIGGER fk_categ_menu " + " BEFORE INSERT "
 				+ " ON " + menuTable +
 				" FOR EACH ROW BEGIN" + " SELECT CASE WHEN ((SELECT "
 				+ colIdCategoria + " FROM " + categoriaTable + " WHERE " + colIdCategoria
-				+ "=new." + colDept + " ) IS NULL)"
+				+ "=new." + colIdCategoriaMenu + " ) IS NULL)"
 				+ " THEN RAISE (ABORT,'Foreign Key Violation') END;" + "  END;");
-
+		
+		db.execSQL("CREATE TRIGGER fk_menuXMesa_Menu " + " BEFORE INSERT "
+				+ " ON " + menuXMesaTable +
+				" FOR EACH ROW BEGIN" + " SELECT CASE WHEN ((SELECT "
+				+ colIdMenu + " FROM " + menuTable + " WHERE " + colIdMenu
+				+ "=new." + colNumeroMenu + " ) IS NULL)"
+				+ " THEN RAISE (ABORT,'Foreign Key Violation') END;" + "  END;");
+		
+		
+		insertarCategorias(db);
+		insertarUsuario(db);
+		
+		/*
 		db.execSQL("CREATE VIEW " + viewEmps + " AS SELECT " + employeeTable
 				+ "." + colID + " AS _id," + " " + employeeTable + "."
 				+ colName + "," + " " + employeeTable + "." + colAge + ","
@@ -92,5 +105,51 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
+	void insertarCategorias(SQLiteDatabase db) {
+		ContentValues cv = new ContentValues();
+		cv.put(colIdCategoria, 1);
+		cv.put(colnombreCategoria, "ENTRADAS");
+		db.insert(categoriaTable, colIdCategoria, cv);
+		cv.put(colIdCategoria, 2);
+		cv.put(colnombreCategoria, "TABLAS");
+		db.insert(categoriaTable, colIdCategoria, cv);
+		cv.put(colIdCategoria, 3);
+		cv.put(colnombreCategoria, "SANDWICHES");
+		db.insert(categoriaTable, colIdCategoria, cv);
+		cv.put(colIdCategoria, 4);
+		cv.put(colnombreCategoria, "CARNES");
+		db.insert(categoriaTable, colIdCategoria, cv);
+		cv.put(colIdCategoria, 5);
+		cv.put(colnombreCategoria, "MINUTAS");
+		db.insert(categoriaTable, colIdCategoria, cv);
+		cv.put(colIdCategoria, 6);
+		cv.put(colnombreCategoria, "PASTAS");
+		db.insert(categoriaTable, colIdCategoria, cv);
+		cv.put(colIdCategoria, 7);
+		cv.put(colnombreCategoria, "BEBIDAS");
+		db.insert(categoriaTable, colIdCategoria, cv);
+		cv.put(colIdCategoria, 8);
+		cv.put(colnombreCategoria, "POSTRE");
+		db.insert(categoriaTable, colIdCategoria, cv);
 
+	}
+
+	void insertarUsuario(SQLiteDatabase db) {
+		ContentValues cv = new ContentValues();
+		cv.put(colUsername, "Mozo");
+		cv.put(colPassword, "Mozo");
+		db.insert(usersTable, colUsername, cv);
+	}
+	
+	void insertarMenus(SQLiteDatabase db) {
+		ContentValues cv = new ContentValues();
+		cv.put(colIdMenu, 1);
+		cv.put(colNombreMenu, "CARNE Y PAPAS AL HORNO");
+		cv.put(colUrlFotoLowQMenu,"");
+		db.insert(categoriaTable, colIdCategoria, cv);
+		
+
+	}
 }
