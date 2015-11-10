@@ -19,12 +19,10 @@ public class IniciarSesion extends Activity implements OnClickListener
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-<<<<<<< HEAD
+
 		setContentView(R.layout.iniciarsesion);
-=======
-		setContentView();
+
 		
->>>>>>> origin/master
 	};
 	
 	@Override
