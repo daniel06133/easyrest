@@ -1,6 +1,6 @@
 package Activities;
 
-import android.R;
+import com.example.proyectomoviles.*;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -19,7 +19,7 @@ public class iniciarSesion extends Activity implements OnClickListener
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.iniciarSesion);
+		setContentView(R.layout.iniciarsesion);
 	};
 	
 	@Override
