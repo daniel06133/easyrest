@@ -13,6 +13,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
          </intent-filter>
         </activity>
+     <activity android:name=".GridItem" />
+     <activity android:name=".GridViewActivity" />
+     <activity android:name=".GridViewAdapter" />
+     <activity android:name=".GridViewCategorias" />
+    
     </application>
     <uses-sdk
         android:minSdkVersion="10"
