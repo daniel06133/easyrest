@@ -59,12 +59,14 @@ private void loadCategoryData() {
 
 		public CategoryAdapter() {
 			mGridData = mGridData1;
-			mGridData.add(new GridItem ("http://www.mendebaldea.com/static/servicios/fotos/desayuno_continental_jpg_402x260_crop_q85.jpg","Desayunos"));
-			mGridData.add(new GridItem ("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9Xf3tMaDIoEj5ZorE8NhTbrVytmroXLtKGRfLc-BthAGs4o7T","Tragos"));
-			mGridData.add(new GridItem ("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjLjR7hhA0hOzJFkl9sejG6MkSzpYi7fHNJuM-ybFnD3JkavrAVw","Lomos"));
-			mGridData.add(new GridItem ("http://media4.letsbonus.com/products/204000/204035/13789310112075-0-680x276.JPG","Entradas"));
-			mGridData.add(new GridItem ("http://kisei.com.ar/wp-content/uploads/2012/01/aseosas-231x256.jpg","Bebidas"));
-			mGridData.add(new GridItem ("https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQ5ROn_am5tv1AKs1YKu_14qwYqxxK1vmaYCy6AaxO_7HTCOdVylg","Postres"));
+			mGridData.add(new GridItem ("","Entradas"));
+			mGridData.add(new GridItem ("","Tablas"));
+			mGridData.add(new GridItem ("","Sandwiches"));
+			mGridData.add(new GridItem ("","Carnes"));
+			mGridData.add(new GridItem ("","Minutas"));
+			mGridData.add(new GridItem ("","Pastas"));
+			mGridData.add(new GridItem ("","Bebidas"));
+			mGridData.add(new GridItem ("","Postres"));
 			
 			inflater = LayoutInflater.from(GridViewCategorias.this);
 		}
