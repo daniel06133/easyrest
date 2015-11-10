@@ -122,7 +122,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 		cv.put(colnombreCategoria, "CARNES");
 		db.insert(categoriaTable, colIdCategoria, cv);
 		cv.put(colIdCategoria, 5);
-		cv.put(colnombreCategoria, "MINUTAS");
+		cv.put(colnombreCategoria, "PIZZAS");
 		db.insert(categoriaTable, colIdCategoria, cv);
 		cv.put(colIdCategoria, 6);
 		cv.put(colnombreCategoria, "PASTAS");
