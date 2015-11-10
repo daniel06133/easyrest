@@ -1,4 +1,4 @@
-package com.pas.hellointents;
+package Activities;
 
 
 import java.io.BufferedReader;
@@ -29,7 +29,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
+import com.example.proyectomoviles.R;
 
 import android.app.Activity;
 

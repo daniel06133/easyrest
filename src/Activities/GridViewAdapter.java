@@ -1,4 +1,5 @@
-package com.pas.hellointents;
+package Activities;
+
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
@@ -23,7 +24,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.squareup.picasso.*;
+import com.example.proyectomoviles.R;
 
 public class GridViewAdapter  extends ArrayAdapter<GridItem>{
 	private static final int IO_BUFFER_SIZE = 0;
