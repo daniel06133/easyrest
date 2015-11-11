@@ -120,11 +120,38 @@ private void loadCategoryData() {
 		Intent intent = new Intent(this,GridViewActivity.class);
 		GridItem categoriaSeleccionada = (GridItem) adapter.getItem(arg2);
 		
+		Integer idCategoria =0;
 		String nombreCategoria = categoriaSeleccionada.getTitle();
+		
+		if (nombreCategoria == "Entrada"){
+			idCategoria=1;
+		}
+		else if (nombreCategoria == "Tablas") {
+			idCategoria=2;			
+		}
+		else if (nombreCategoria == "Sandwiches") {
+			idCategoria=3;			
+		}
+		else if (nombreCategoria == "Carnes") {
+			idCategoria=4;			
+		}
+		else if (nombreCategoria == "Pizzas") {
+			idCategoria=5;			
+		}
+		else if (nombreCategoria == "Pastas") {
+			idCategoria=6;			
+		}
+		else if (nombreCategoria == "Bebidas") {
+			idCategoria=7;			
+		}
+		else if (nombreCategoria == "Postres") {
+			idCategoria=8;			
+		}
+						
 		
 		if(intent != null)
 		{
-			intent.putExtra("categoria",nombreCategoria);
+			intent.putExtra("categoria",idCategoria);
 			
 			startActivity(intent);
 		}	
