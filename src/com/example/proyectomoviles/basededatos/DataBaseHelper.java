@@ -34,7 +34,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 
 	
 	
-	public DataBaseHelper(Context context, String name, CursorFactory factory, int version) {
+	public DataBaseHelper(Context context) {
 		super(context, dbName, null, 1);
 		// TODO Auto-generated constructor stub
 	}
@@ -680,7 +680,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 					+ menuTable + "." + colUrlFotoLowQMenu + " , "
 					+ menuTable + "." + colUrlFotoHighQMenu + " , "
 					+ menuTable + "." + colPrecioMenu + " , "
-					+ menuTable + "." + colIdCategoriaMenu + " , "
+					+ menuTable + "." + colIdCategoriaMenu
 					+" from " + menuTable 
 					+" where "+ menuTable + "." + colIdCategoriaMenu + " = " + idCategoria, null);
 
