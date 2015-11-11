@@ -1,4 +1,4 @@
-package Activities;
+package com.example.proyectomoviles;
 
 import java.util.List;
 

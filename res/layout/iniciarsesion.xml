@@ -1,36 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?><LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/nombre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Nombre de usuario" />
-
-    <EditText
+ <EditText
         android:id="@+id/txtNombreUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10" >
-
-        <requestFocus />
+        android:ems="10"    
+        android:text="Nombre de Usuario" >
     </EditText>
-
-    <TextView
-        android:id="@+id/contrasena"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Contraseña" />
 
     <EditText
         android:id="@+id/txtContrasena"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:text="Contraseña" />
 
     <Button
         android:id="@+id/btnIniciarSesion"

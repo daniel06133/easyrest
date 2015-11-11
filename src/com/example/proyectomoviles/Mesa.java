@@ -1,4 +1,4 @@
-package Activities;
+package com.example.proyectomoviles;
 
 public class Mesa {
 

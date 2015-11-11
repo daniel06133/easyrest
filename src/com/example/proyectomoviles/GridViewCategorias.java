@@ -1,10 +1,8 @@
-package Activities;
+package com.example.proyectomoviles;
 
 import java.util.ArrayList;
 
-import com.pas.hellointents.GridViewActivity.AsyncHttpTask;
-import com.pas.hellointents.GridViewAdapter.ImageLoadTask;
-import com.pas.hellointents.MainAndroidDialogs.DialogInfoAdapter.Holder;
+
 
 import com.example.proyectomoviles.R;
 
@@ -33,7 +31,7 @@ OnItemClickListener{
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.categorias);
 
-        mGridView = (GridView) findViewById(R.id.gvCategorias);
+    //    mGridView = (GridView) findViewById(R.id.gvCategorias);
         
         //Initialize with empty data
         mGridData1 = new ArrayList<GridItem>();

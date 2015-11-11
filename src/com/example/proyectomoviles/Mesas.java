@@ -1,9 +1,11 @@
-package Activities;
+package com.example.proyectomoviles;
 
 import java.util.ArrayList;
 
 
 import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,9 +14,12 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 import com.example.proyectomoviles.*;
+
+
 
 public class Mesas extends Activity implements
 OnItemClickListener {
@@ -31,6 +36,18 @@ OnItemClickListener {
 
         mGridView = (GridView) findViewById(R.id.mesas);
         
+        
+        LinearLayout linearMesas = (LinearLayout) findViewById(R.id.linearLMesas);
+        linearMesas.setBackgroundColor(Color.LTGRAY);
+        
+       /* 
+        TextView txtTitulo = (TextView) findViewById(R.id.textViewTituloCategorias);
+        txtTitulo.setBackgroundColor(Color.parseColor("#5173DA"));
+        txtTitulo.setTextColor(Color.parseColor("#FFFFFF"));
+        txtTitulo.setTextSize(20);
+        */
+        mGridView.setBackgroundColor(Color.LTGRAY);
+        
         //Initialize with empty data
         mGridMesas = new ArrayList<Mesa>();
         adapter = new MesaAdapter();
@@ -45,7 +62,16 @@ OnItemClickListener {
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 		// TODO Auto-generated method stub
+		Intent intent = new Intent(this,Pedidos.class);
 		
+		String numeroDeMesa = "" + arg2;
+		
+		if(intent != null)
+		{
+			intent.putExtra("mesa",numeroDeMesa);
+			
+			startActivity(intent);
+		}
 	}
 	
 	private void loadCategoryData() {
