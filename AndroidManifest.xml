@@ -17,6 +17,15 @@
             android:name=".Mesas"></activity>
         <activity 
             android:name=".Pedidos"></activity>
+        <activity 
+            android:name=".GridItem"></activity>
+        <activity 
+            android:name=".GridViewActivity"></activity>
+        <activity 
+            android:name=".GridViewAdapter"></activity>
+        <activity 
+            android:name=".GridViewCategorias"></activity>
+        
     </application>
     <uses-sdk
         android:minSdkVersion="6"

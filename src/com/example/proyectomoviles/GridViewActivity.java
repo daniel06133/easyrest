@@ -47,11 +47,11 @@ public class GridViewActivity extends Activity{
 	    @Override
 	    protected void onCreate(Bundle savedInstanceState) {
 	    	super.onCreate(savedInstanceState);
-	     //   setContentView(R.layout.gridviewactivity);
+	        setContentView(R.layout.categorias);
 	        
 	      categoriaSeleccionada = getIntent().getStringExtra("categoria");
 
-	   //     mGridView = (GridView) findViewById(R.id.gvImagenes);
+	        mGridView = (GridView) findViewById(R.id.gvCategorias);
 
 	        //Carga de imagenes de internet por json
 	        

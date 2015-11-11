@@ -2,7 +2,9 @@ package com.example.proyectomoviles;
 
 import java.util.ArrayList;
 
-
+//import com.pas.hellointents.GridViewActivity.AsyncHttpTask;
+//import com.pas.hellointents.GridViewAdapter.ImageLoadTask;
+//import com.pas.hellointents.MainAndroidDialogs.DialogInfoAdapter.Holder;
 
 import com.example.proyectomoviles.R;
 
@@ -31,7 +33,7 @@ OnItemClickListener{
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.categorias);
 
-    //    mGridView = (GridView) findViewById(R.id.gvCategorias);
+        mGridView = (GridView) findViewById(R.id.gvCategorias);
         
         //Initialize with empty data
         mGridData1 = new ArrayList<GridItem>();
@@ -57,14 +59,14 @@ private void loadCategoryData() {
 
 		public CategoryAdapter() {
 			mGridData = mGridData1;
-			mGridData.add(new GridItem ("","Entradas"));
-			mGridData.add(new GridItem ("","Tablas"));
-			mGridData.add(new GridItem ("","Sandwiches"));
-			mGridData.add(new GridItem ("","Carnes"));
-			mGridData.add(new GridItem ("","Minutas"));
-			mGridData.add(new GridItem ("","Pastas"));
-			mGridData.add(new GridItem ("","Bebidas"));
-			mGridData.add(new GridItem ("","Postres"));
+			mGridData.add(new GridItem ("https://photos-3.dropbox.com/t/2/AAA_qqhNfIHqsVC8jGwn0r1FSaP9nwb893R-8J24BPPx1Q/12/67847608/png/32x32/1/_/1/2/Entrada.png/EOK1sqcDGOkiIAIoAg/jGVrNVCbEhu_PtK5US62cUYQTOrLVZkH1InNVc3G8Io?size=1024x768&size_mode=2","Entradas"));
+			mGridData.add(new GridItem ("https://photos-5.dropbox.com/t/2/AACRfjM2gvJKKY97dmtYjs167H-As_YqQWOLyDD9CyXMKg/12/67847608/png/32x32/1/_/1/2/Tablas.png/EOK1sqcDGOkiIAIoAg/vFGPm4j7b5UIxG3XkBi2NmvJDSsM1S6R8t0sq7tAODY?size=1024x768&size_mode=2","Tablas"));
+			mGridData.add(new GridItem ("https://photos-5.dropbox.com/t/2/AADf1809_uPNeMbMdmL0uJF4oTr7Q9DYUNHA0Og1yl4dig/12/67847608/png/32x32/1/_/1/2/Sandwich.png/EOK1sqcDGOkiIAIoAg/PWs8O4gZbLkQcq-4a2D6OWval3zRZ-CiZtPCbjZuQ_0?size=1024x768&size_mode=2","Sandwiches"));
+			mGridData.add(new GridItem ("https://photos-2.dropbox.com/t/2/AAA_ZKjRBSg6ccGLa-hVWw-SDYbyAUoMMM0llRCgy3EmSQ/12/67847608/png/32x32/1/_/1/2/Carnes.png/EOK1sqcDGOkiIAIoAg/aXnMwy16ov5J6l1XFkB-cMhjMUgbBMzcDy9ZWQ8SkEw?size=1024x768&size_mode=2","Carnes"));
+			mGridData.add(new GridItem ("https://photos-5.dropbox.com/t/2/AAD0_kvLusT97aqRE2Ct6LBShB7ekYfiJiUgXDR621yFPQ/12/67847608/png/32x32/1/_/1/2/Pizza.png/EOK1sqcDGOkiIAIoAg/TwCZMCIKhmtWQ_x-gAfWgrtLIgo7G9Y1HyiD2bOZhfQ?size=1024x768&size_mode=2","Pizzas"));
+			mGridData.add(new GridItem ("https://photos-2.dropbox.com/t/2/AABSqN4Sh8VgOG1lwhUnbutNzviJHhybErO8e2Y8YjD0Lg/12/67847608/png/32x32/1/_/1/2/Pastas.png/EOK1sqcDGOkiIAIoAg/ku8B1eCfwr_BFmZc_5fyna_gqWjzBT557NUP3RkI2FY?size=1024x768&size_mode=2","Pastas"));
+			mGridData.add(new GridItem ("https://photos-2.dropbox.com/t/2/AACJ7TGq2I5T9rK3dcwRatvYj09lraGEdhQqWwafJNlH6w/12/67847608/png/32x32/1/_/1/2/Bebida.png/EOK1sqcDGOkiIAIoAg/4YeknzjzTBjT2oGcpfqicXPzHjFLpzuql2P-ZwYSe-8?size=1024x768&size_mode=2","Bebidas"));
+			mGridData.add(new GridItem ("https://photos-5.dropbox.com/t/2/AADYIm0ofBI-O9jK4_ZxqY1vk2IieGCkGOvzEDGUMuZs3Q/12/67847608/png/32x32/1/_/1/2/helado.png/EOK1sqcDGOkiIAIoAg/_52iJDVX5vgEUULga7VhhJeKBXLC1XV82-foo5UYX_s?size=1024x768&size_mode=2","Postres"));
 			
 			inflater = LayoutInflater.from(GridViewCategorias.this);
 		}
