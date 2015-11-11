@@ -61,7 +61,7 @@ OnItemClickListener {
 		// TODO Auto-generated method stub
 		Intent intent = new Intent(this,Pedidos.class);
 		
-		String numeroDeMesa = "" + arg2;
+		Integer numeroDeMesa = arg2;
 		
 		if(intent != null)
 		{

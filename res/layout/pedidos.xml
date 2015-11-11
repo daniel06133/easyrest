@@ -9,24 +9,65 @@
 		            android:id="@+id/txtNroMesa"
 		            android:layout_width="match_parent"
 		            android:layout_height="wrap_content"
+		            android:layout_weight="0.05"
 		            android:gravity ="center"
+		            android:background="#5173DA"
+		            android:textColor="#FFFFFF"
+		            android:textSize="40sp"
+		            android:textStyle="bold"
 		            android:text="Mesa " />
+					
+					<Button
+					    android:id="@+id/btnConfirmarPedido"
+					    android:layout_width="350dp"
+					    android:layout_height="wrap_content"
+					    android:layout_weight="0.05"
+					    android:layout_gravity ="right"
+					    android:text="Confirmar pedido" 
+					    android:textStyle="bold"
+					    android:textSize="32sp"
+					    android:background="#43A049"
+					    android:textColor="#000000"
+					    android:layout_marginLeft="25dp"
+					    android:layout_marginRight="25dp"
+					    android:layout_marginTop="25dp"
+					    android:layout_marginBottom="25dp" 
+					    android:bottomRightRadius="100dp"
+						android:bottomLeftRadius="100dp"
+						android:topLeftRadius="100dp"
+						android:topRightRadius="100dp"
+						
+					    />
+					
 
 					<ListView
 					    android:id="@+id/listaPedidos"
 					    android:layout_width="match_parent"
-					    android:layout_height="wrap_content"
+					    android:layout_height="500dp"
+					    android:layout_weight="0.8"
 					    android:layout_marginLeft="25dp"
 					    android:layout_marginRight="25dp"
 					    android:layout_marginTop="25dp"
-					    android:layout_marginBottom="25dp" >
+					    android:layout_marginBottom="25dp" 
+					    android:background="#AABCF2"
+					    android:bottomRightRadius="100dp"
+						android:bottomLeftRadius="100dp"
+						android:topLeftRadius="100dp"
+						android:topRightRadius="100dp"
+						android:divider="#5173DA"
+   						android:dividerHeight="5px">
 					</ListView>
 					
 					<TextView
 		            android:id="@+id/txtMensajeSinPedidos"
 		            android:layout_width="match_parent"
 		            android:layout_height="wrap_content"
+		            android:layout_weight="0.05"
 		            android:gravity ="center"
-		            android:text="No hay pedidos registrados."/>
-							   
+		            android:text=""/>
+
+												   
+					
+					
+					
 </LinearLayout>

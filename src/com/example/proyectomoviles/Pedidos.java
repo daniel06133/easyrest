@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -27,23 +28,23 @@ OnItemClickListener{
     private PedidoAdapter adapter;
     private ArrayList<Pedido> ListaPedidos;
 	
+    
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.pedidos);
 
         ListView = (ListView) findViewById(R.id.listaPedidos);
-        
+        //TextView txtTotal = (TextView) findViewById(R.id.txtTotal);
         
         LinearLayout linearMesas = (LinearLayout) findViewById(R.id.linearLPedidos);
         linearMesas.setBackgroundColor(Color.LTGRAY);
         
         TextView txtTitulo = (TextView) findViewById(R.id.txtNroMesa);
-        txtTitulo.setBackgroundColor(Color.parseColor("#5173DA"));
-        txtTitulo.setTextColor(Color.parseColor("#FFFFFF"));
-        txtTitulo.setTextSize(30);
+        txtTitulo.setText("Mesa "+ (getIntent().getIntExtra("mesa",0) + 1));    
+       // txtTotal.setText("TOTAL $2000");
         
-        ListView.setBackgroundColor(Color.LTGRAY);
+       // ListView.setBackgroundColor(Color.LTGRAY);
         
         //Initialize with empty data
         ListaPedidos = new ArrayList<Pedido>();
@@ -75,22 +76,30 @@ OnItemClickListener{
 		public PedidoAdapter() {
 			ListaPedidos2 = ListaPedidos;
 			
-			String nroMesa = getIntent().getStringExtra("mesa");
+			Integer nroMesa = getIntent().getIntExtra("mesa",0);
 			Pedido p = new Pedido();
-			p.setNombre("Pedido mesa" + nroMesa);
-			p.setCantidad("Cantidad 1");
+			p.setNombre("MILANESA DE CARNE A LA NAPOLITANA CON PAPAS AL HORNO");
+			p.setCantidad("3");
 			p.setPrecio("$20");
 			p.setEstado("Tomado");
 			
 			ListaPedidos2.add(p);
 			
 			Pedido p2 = new Pedido();
-			p.setNombre("Pedido mesa" + nroMesa);
-			p.setCantidad("Cantidad 2");
-			p.setPrecio("$200");
-			p.setEstado("Registrado");
+			p2.setNombre("Coca cola");
+			p2.setCantidad("5");
+			p2.setPrecio("$8922");
+			p2.setEstado("Registrado");
 			
 			ListaPedidos2.add(p2);
+			
+			Pedido p3 = new Pedido();
+			p3.setCantidad("23");
+			p3.setNombre("VACIO RELLENO ACOMPAÑADO DE CROQUETAS DE FIDEO.");
+			p3.setPrecio("$380,50");
+			p3.setEstado("Registrado");
+			
+			ListaPedidos2.add(p3);
 			
 			
 			inflater = LayoutInflater.from(Pedidos.this);
