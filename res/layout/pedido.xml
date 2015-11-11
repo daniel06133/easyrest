@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+    <TextView
+        android:id="@+id/txtNombrePedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Nombre:  " 
+        android:background="#5173DA"/>
+
+    <TextView
+        android:id="@+id/txtPrecioPedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="$    " 
+        android:background="#5173DA"/>
+
+    <TextView
+        android:id="@+id/txtCantidadPedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.49"
+        android:gravity="center"
+        android:text="Cantidad: "
+        android:background="#5173DA" />
+    
+    <TextView
+        android:id="@+id/txtEstadoPedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.49"
+        android:gravity="center"
+        android:text="Estado: " 
+        android:background="#5173DA"/>
+    
+
+</LinearLayout>
