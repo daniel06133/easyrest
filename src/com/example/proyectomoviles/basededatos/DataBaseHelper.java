@@ -1,12 +1,13 @@
 package com.example.proyectomoviles.basededatos;
 
+
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.support.v4.widget.ContentLoadingProgressBar;
 
 public class DataBaseHelper extends SQLiteOpenHelper{
 
@@ -70,6 +71,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 		
 		insertarUsuario(db);
 		insertarMenus(db);
+		insertarMenuXMesa(db);
 		/*
 		db.execSQL("CREATE VIEW " + viewEmps + " AS SELECT " + employeeTable
 				+ "." + colID + " AS _id," + " " + employeeTable + "."
@@ -100,6 +102,60 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 		cv.put(colUsername, "Mozo");
 		cv.put(colPassword, "Mozo");
 		db.insert(usersTable, colUsername, cv);
+	}
+	
+	
+	void insertarMenuXMesa(SQLiteDatabase db) {
+		ContentValues cv = new ContentValues();
+		cv.put(colNumeroMesa, 1);
+		cv.put(colNumeroMenu, 1);
+		cv.put(colCantidad, 5);
+		db.insert(menuXMesaTable, colNumeroMesa, cv);
+		
+		cv.put(colNumeroMesa, 1);
+		cv.put(colNumeroMenu, 2);
+		cv.put(colCantidad, 2);
+		db.insert(menuXMesaTable, colNumeroMesa, cv);
+		
+		cv.put(colNumeroMesa, 1);
+		cv.put(colNumeroMenu, 3);
+		cv.put(colCantidad, 3);
+		db.insert(menuXMesaTable, colNumeroMesa, cv);
+		
+		cv.put(colNumeroMesa, 1);
+		cv.put(colNumeroMenu, 4);
+		cv.put(colCantidad, 4);
+		db.insert(menuXMesaTable, colNumeroMesa, cv);
+		
+		cv.put(colNumeroMesa, 1);
+		cv.put(colNumeroMenu, 5);
+		cv.put(colCantidad, 1);
+		db.insert(menuXMesaTable, colNumeroMesa, cv);
+		
+		cv.put(colNumeroMesa, 1);
+		cv.put(colNumeroMenu, 6);
+		cv.put(colCantidad, 5);
+		db.insert(menuXMesaTable, colNumeroMesa, cv);
+		
+		cv.put(colNumeroMesa, 1);
+		cv.put(colNumeroMenu, 7);
+		cv.put(colCantidad, 2);
+		db.insert(menuXMesaTable, colNumeroMesa, cv);
+		
+		cv.put(colNumeroMesa, 1);
+		cv.put(colNumeroMenu, 8);
+		cv.put(colCantidad, 3);
+		db.insert(menuXMesaTable, colNumeroMesa, cv);
+		
+		cv.put(colNumeroMesa, 1);
+		cv.put(colNumeroMenu, 9);
+		cv.put(colCantidad, 4);
+		db.insert(menuXMesaTable, colNumeroMesa, cv);
+		
+		cv.put(colNumeroMesa, 1);
+		cv.put(colNumeroMenu, 10);
+		cv.put(colCantidad, 1);
+		db.insert(menuXMesaTable, colNumeroMesa, cv);
 	}
 	
 	void insertarMenus(SQLiteDatabase db) {
@@ -632,8 +688,16 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 		}
 		
 		
-		public boolean insertarMenuEnMesa(){
-			return true;
+		public void insertarMenuEnMesa(int idMesa, int idMenu, int cantidad)
+		{
+			SQLiteDatabase db = this.getWritableDatabase();
+			ContentValues cv = new ContentValues();
+			cv.put(colNumeroMesa, idMesa);
+			cv.put(colNumeroMenu, idMenu);
+			cv.put(colCantidad, cantidad);
+			// cv.put(colDept,2);
+			db.insert(menuXMesaTable, colNumeroMesa, cv);
+			db.close();
 		}
 		
 		
