@@ -145,11 +145,94 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 	
 	void insertarMenus(SQLiteDatabase db) {
 		ContentValues cv = new ContentValues();
-		cv.put(colIdMenu, 1);
-		cv.put(colNombreMenu, "CARNE Y PAPAS AL HORNO");
+		cv.put(colNombreMenu, "Jarra de Cerveza");
 		cv.put(colUrlFotoLowQMenu,"");
-		db.insert(categoriaTable, colIdCategoria, cv);
+		cv.put(colUrlFotoHighQMenu, "");
+		cv.put(colDescripcionMenu, "Jarra de litro de Cerveza Artesanal Rubia");
+		cv.put(colPrecioMenu, 80);
+		cv.put(colIdCategoriaMenu, 7);
+		db.insert(menuTable, colIdMenu, cv);
 		
+		cv.put(colNombreMenu, "Vaso de Cerveza");
+		cv.put(colUrlFotoLowQMenu,"");
+		cv.put(colUrlFotoHighQMenu, "");
+		cv.put(colDescripcionMenu, "Vaso de Cerveza Artesanal, de diferentes gustos.");
+		cv.put(colPrecioMenu, 50);
+		cv.put(colIdCategoriaMenu, 7);
+		db.insert(menuTable, colIdMenu, cv);
+		
+		cv.put(colNombreMenu, "COCA COLA 1,5L");
+		cv.put(colUrlFotoLowQMenu,"");
+		cv.put(colUrlFotoHighQMenu, "");
+		cv.put(colDescripcionMenu, "Bebida sabor cola, marca Coca de 1,5L.");
+		cv.put(colPrecioMenu, 80);
+		cv.put(colIdCategoriaMenu, 7);
+		db.insert(menuTable, colIdMenu, cv);
+		
+		cv.put(colNombreMenu, "COCA COLA ZERO 1,5L");
+		cv.put(colUrlFotoLowQMenu,"");
+		cv.put(colUrlFotoHighQMenu, "");
+		cv.put(colDescripcionMenu, "Bebida sabor cola, marca Coca de 1,5L sin azucar.");
+		cv.put(colPrecioMenu, 85);
+		cv.put(colIdCategoriaMenu, 7);
+		db.insert(menuTable, colIdMenu, cv);
+		
+		cv.put(colNombreMenu, "COCA COLA 375ml.");
+		cv.put(colUrlFotoLowQMenu,"");
+		cv.put(colUrlFotoHighQMenu, "");
+		cv.put(colDescripcionMenu, "Bebida sabor cola, marca Coca de 375ml.");
+		cv.put(colPrecioMenu, 35);
+		cv.put(colIdCategoriaMenu, 7);
+		db.insert(menuTable, colIdMenu, cv);
+		
+		cv.put(colNombreMenu, "FANTA 1,5L");
+		cv.put(colUrlFotoLowQMenu,"");
+		cv.put(colUrlFotoHighQMenu, "");
+		cv.put(colDescripcionMenu, "Bebida sabor naranja, marca Coca de 1,5L.");
+		cv.put(colPrecioMenu, 80);
+		cv.put(colIdCategoriaMenu, 7);
+		db.insert(menuTable, colIdMenu, cv);
+		
+		cv.put(colNombreMenu, "SPRITE 1,5L");
+		cv.put(colUrlFotoLowQMenu,"");
+		cv.put(colUrlFotoHighQMenu, "");
+		cv.put(colDescripcionMenu, "Bebida sabor lima, marca Coca de 1,5L.");
+		cv.put(colPrecioMenu, 80);
+		cv.put(colIdCategoriaMenu, 7);
+		db.insert(menuTable, colIdMenu, cv);
+		
+		
+		
+		cv.put(colNombreMenu, "BIFE DE CHORIZO");
+		cv.put(colUrlFotoLowQMenu,"");
+		cv.put(colUrlFotoHighQMenu, "");
+		cv.put(colDescripcionMenu, "Bife de chorizo a la parrilla.");
+		cv.put(colPrecioMenu, 100);
+		cv.put(colIdCategoriaMenu, 4);
+		db.insert(menuTable, colIdMenu, cv);
+				
+		cv.put(colNombreMenu, "CABRITO AL HORNO");
+		cv.put(colUrlFotoLowQMenu,"");
+		cv.put(colUrlFotoHighQMenu, "");
+		cv.put(colDescripcionMenu, "Carne de cabrito al horno con reduccion de vino malbec.");
+		cv.put(colPrecioMenu, 150);
+		cv.put(colIdCategoriaMenu, 4);
+		db.insert(menuTable, colIdMenu, cv);
 
+		cv.put(colNombreMenu, "CORDERO ASADO");
+		cv.put(colUrlFotoLowQMenu,"");
+		cv.put(colUrlFotoHighQMenu, "");
+		cv.put(colDescripcionMenu, "Carne de cordero asada a la llama.");
+		cv.put(colPrecioMenu, 150);
+		cv.put(colIdCategoriaMenu, 4);
+		db.insert(menuTable, colIdMenu, cv);
+		
+		cv.put(colNombreMenu, "BIFES DE CUADRIL");
+		cv.put(colUrlFotoLowQMenu,"");
+		cv.put(colUrlFotoHighQMenu, "");
+		cv.put(colDescripcionMenu, "Carne de cabrito al horno con reduccion de vino malbec.");
+		cv.put(colPrecioMenu, 150);
+		cv.put(colIdCategoriaMenu, 4);
+		db.insert(menuTable, colIdMenu, cv);
 	}
 }
