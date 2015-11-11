@@ -2,7 +2,6 @@ package com.example.proyectomoviles;
 
 import java.util.List;
 
-import com.example.proyectomoviles.*;
 
 import android.app.Activity;
 import android.content.Intent;

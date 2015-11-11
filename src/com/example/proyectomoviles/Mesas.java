@@ -84,6 +84,9 @@ OnItemClickListener {
 
 		public MesaAdapter() {
 			mGridData = mGridMesas;
+			mGridData.add(new Mesa ("https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Table.png/200px-Table.png"));
+			mGridData.add(new Mesa ("https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Table.png/200px-Table.png"));
+		/*
 			mGridData.add(new Mesa ("https://photos-2.dropbox.com/t/2/AAAdorRtQg0TuoD-5aAL2-EYmtKPQRruqB9Syt2LQxnDYA/12/413610626/png/32x32/1/_/1/2/mesa1.png/EOK1sqcDGIwiIAIoAg/nQuwqwTJ3QbkvpGHejFshACo5MCE1C_fodDI1_WgzYg?size=1024x768&size_mode=2"));
 			mGridData.add(new Mesa ("https://photos-2.dropbox.com/t/2/AAAdorRtQg0TuoD-5aAL2-EYmtKPQRruqB9Syt2LQxnDYA/12/413610626/png/32x32/1/_/1/2/mesa1.png/EOK1sqcDGIwiIAIoAg/nQuwqwTJ3QbkvpGHejFshACo5MCE1C_fodDI1_WgzYg?size=1024x768&size_mode=2"));
 			mGridData.add(new Mesa ("https://photos-2.dropbox.com/t/2/AAAdorRtQg0TuoD-5aAL2-EYmtKPQRruqB9Syt2LQxnDYA/12/413610626/png/32x32/1/_/1/2/mesa1.png/EOK1sqcDGIwiIAIoAg/nQuwqwTJ3QbkvpGHejFshACo5MCE1C_fodDI1_WgzYg?size=1024x768&size_mode=2"));
@@ -102,9 +105,7 @@ OnItemClickListener {
 			mGridData.add(new Mesa ("https://photos-2.dropbox.com/t/2/AAAdorRtQg0TuoD-5aAL2-EYmtKPQRruqB9Syt2LQxnDYA/12/413610626/png/32x32/1/_/1/2/mesa1.png/EOK1sqcDGIwiIAIoAg/nQuwqwTJ3QbkvpGHejFshACo5MCE1C_fodDI1_WgzYg?size=1024x768&size_mode=2"));
 			mGridData.add(new Mesa ("https://photos-2.dropbox.com/t/2/AAAdorRtQg0TuoD-5aAL2-EYmtKPQRruqB9Syt2LQxnDYA/12/413610626/png/32x32/1/_/1/2/mesa1.png/EOK1sqcDGIwiIAIoAg/nQuwqwTJ3QbkvpGHejFshACo5MCE1C_fodDI1_WgzYg?size=1024x768&size_mode=2"));
 			mGridData.add(new Mesa ("https://photos-2.dropbox.com/t/2/AAAdorRtQg0TuoD-5aAL2-EYmtKPQRruqB9Syt2LQxnDYA/12/413610626/png/32x32/1/_/1/2/mesa1.png/EOK1sqcDGIwiIAIoAg/nQuwqwTJ3QbkvpGHejFshACo5MCE1C_fodDI1_WgzYg?size=1024x768&size_mode=2"));
-			mGridData.add(new Mesa ("https://photos-2.dropbox.com/t/2/AAAdorRtQg0TuoD-5aAL2-EYmtKPQRruqB9Syt2LQxnDYA/12/413610626/png/32x32/1/_/1/2/mesa1.png/EOK1sqcDGIwiIAIoAg/nQuwqwTJ3QbkvpGHejFshACo5MCE1C_fodDI1_WgzYg?size=1024x768&size_mode=2"));
-			mGridData.add(new Mesa ("https://photos-2.dropbox.com/t/2/AAAdorRtQg0TuoD-5aAL2-EYmtKPQRruqB9Syt2LQxnDYA/12/413610626/png/32x32/1/_/1/2/mesa1.png/EOK1sqcDGIwiIAIoAg/nQuwqwTJ3QbkvpGHejFshACo5MCE1C_fodDI1_WgzYg?size=1024x768&size_mode=2"));
-
+*/
 			
 			inflater = LayoutInflater.from(Mesas.this);
 		}
