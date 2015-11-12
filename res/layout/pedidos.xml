@@ -53,6 +53,17 @@
 						android:divider="#000000"
    						android:dividerHeight="1.5px">
 					</ListView>
+
+					<ImageButton
+					    android:id="@+id/btnAgregarMenu"
+					    android:layout_width="wrap_content"
+					    android:layout_height="wrap_content"
+					    android:gravity="right"
+					    android:layout_marginLeft="25dp"
+					    android:layout_marginRight="25dp"
+					    android:layout_marginTop="25dp"
+					    android:layout_marginBottom="25dp" 
+					    android:src="@android:drawable/btn_plus" />
 					
 					<TextView
 		            android:id="@+id/txtMensajeSinPedidos"

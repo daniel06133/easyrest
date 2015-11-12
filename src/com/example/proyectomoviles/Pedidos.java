@@ -1,6 +1,7 @@
 package com.example.proyectomoviles;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.example.proyectomoviles.basededatos.DataBaseHelper;
 
@@ -8,11 +9,15 @@ import android.app.Activity;
 import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
@@ -24,17 +29,18 @@ import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 
-public class Pedidos extends ListActivity implements OnItemClickListener,OnItemLongClickListener
+public class Pedidos extends ListActivity implements OnItemClickListener,OnItemLongClickListener, android.view.View.OnClickListener
 {
 
     private PedidoAdapter adapter;
     private DataBaseHelper db;
+    private ImageButton btnAgregarPedido;
     
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.pedidos);
-        db = new DataBaseHelper(this);        
+        db = new DataBaseHelper(this);      
        
         //TextView txtTotal = (TextView) findViewById(R.id.txtTotal);
         
@@ -43,20 +49,29 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
         
         TextView txtTitulo = (TextView) findViewById(R.id.txtNroMesa);
         txtTitulo.setText("Mesa "+ (getIntent().getIntExtra("mesa",0) + 1));   
+        
+        btnAgregarPedido = (ImageButton) findViewById(R.id.btnAgregarMenu);
+        btnAgregarPedido.setOnClickListener(this);
        
-       // txtTotal.setText("TOTAL $2000");
         adapter = new PedidoAdapter();
-        
         cargarPedidosPorMesa((getIntent().getIntExtra("mesa",0) + 1));
+        Menu menu = (Menu) getIntent().getSerializableExtra("menu");
         
-        
+        if (menu != null) {
+        	Pedido p = new Pedido();
+        	p.setCantidad(1);
+        	p.setEstado("Tomado");
+        	p.setId(menu.getIdMenu());
+        	p.setNombre(menu.getNombreMenu());
+        	p.setPrecio(menu.getPrecioMenu());
+        	adapter.addPedido(p);
+		}     
+                
         setListAdapter(adapter);
         getListView().setOnItemClickListener(this);
         getListView().setOnItemLongClickListener(this);
         //Start download
         loadPedidos();
-        
-           
     }
 	
 	private void cargarPedidosPorMesa(int idMesa)
@@ -189,4 +204,21 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 		}
 
 	}
+
+	@Override
+	public void onClick(View v) {
+		Intent intent = new Intent((this),GridViewCategorias.class);
+		if (isIntentAvailable(intent)) {
+			startActivity(intent);
+		}
+		
+		
+	}
+	private boolean isIntentAvailable(Intent intent) {
+		final PackageManager packageManager = getPackageManager();
+		List<ResolveInfo> list = packageManager.queryIntentActivities(intent,
+				PackageManager.MATCH_DEFAULT_ONLY);
+		return list.size() > 0;
+	}
+	
 }
