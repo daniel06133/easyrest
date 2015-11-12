@@ -26,6 +26,7 @@ OnItemClickListener{
 	private GridView mGridView;
     private CategoryAdapter adapter;
     private ArrayList<GridItem> mGridData1;
+    static GridViewCategorias activityCategorias;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,7 @@ OnItemClickListener{
         adapter = new CategoryAdapter();
         mGridView.setAdapter(adapter);
         mGridView.setOnItemClickListener(this);
+        activityCategorias = this;
         
         //Start download
         loadCategoryData();
@@ -156,5 +158,9 @@ private void loadCategoryData() {
 			startActivity(intent);
 		}	
 		
+	}
+	
+	public static GridViewCategorias getInstance(){
+		return activityCategorias;
 	}
 }

@@ -43,6 +43,7 @@ OnItemClickListener{
 	private MenuAdapter adapter;
 	private Menu menuToShow;
 	private Intent IntentMenu;
+	static GridViewActivity activityMenu;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -51,6 +52,7 @@ OnItemClickListener{
 		setContentView(R.layout.listamenus);
 		db = new DataBaseHelper(this);
 		adapter = new MenuAdapter();
+		activityMenu=this;
 		setListAdapter(adapter);
 		getListView().setOnItemClickListener(this);
 		loadMenuData();
@@ -130,6 +132,8 @@ OnItemClickListener{
 						.findViewById(R.id.txtMenu);
 				holder.txtPrecio = (TextView) convertView
 						.findViewById(R.id.txtPrecio);
+				holder.btnAgregarMenu = (Button) convertView.
+						findViewById(R.id.btnAgregarMenu);
 				holder.btnAgregarMenu.setOnClickListener(new View.OnClickListener() {
 					@Override
 					public void onClick(View v) {
@@ -142,6 +146,9 @@ OnItemClickListener{
 							IntentMenu.putExtra("menu",menuSeleccionado);
 							
 							startActivity(IntentMenu);
+							GridViewCategorias.getInstance().finish();
+							GridViewActivity.getInstance().finish();
+							
 						}
 						
 					}
@@ -240,6 +247,10 @@ OnItemClickListener{
 	
 	public void createIntent(){
 		IntentMenu= new Intent(this,Pedidos.class);
+	}
+	
+	public static GridViewActivity getInstance(){
+		return activityMenu;
 	}
 /*
 	@Override
