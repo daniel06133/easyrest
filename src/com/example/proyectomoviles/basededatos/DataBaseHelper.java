@@ -72,6 +72,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 		insertarUsuario(db);
 		insertarMenus(db);
 		insertarMenuXMesa(db);
+		
 		/*
 		db.execSQL("CREATE VIEW " + viewEmps + " AS SELECT " + employeeTable
 				+ "." + colID + " AS _id," + " " + employeeTable + "."
@@ -111,6 +112,11 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 		cv.put(colNumeroMenu, 1);
 		cv.put(colCantidad, 5);
 		db.insert(menuXMesaTable, colNumeroMesa, cv);
+		/*
+		cv.put(colNumeroMesa, 1);
+		cv.put(colNumeroMenu, 11);
+		cv.put(colCantidad, 2);
+		db.insert(menuXMesaTable, colNumeroMesa, cv);*/
 		
 		cv.put(colNumeroMesa, 1);
 		cv.put(colNumeroMenu, 2);

@@ -2,10 +2,11 @@ package com.example.proyectomoviles;
 
 import java.util.ArrayList;
 
-import com.example.proyectomoviles.Mesas.MesaAdapter;
-import com.example.proyectomoviles.Mesas.MesaAdapter.Holder;
+import com.example.proyectomoviles.basededatos.DataBaseHelper;
 
-import android.app.Activity;
+
+import android.app.ListActivity;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,28 +14,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.EditText;
-import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class Pedidos extends Activity implements
+public class Pedidos extends ListActivity implements
 OnItemClickListener{
 
-	private ListView ListView;
     private PedidoAdapter adapter;
-    private ArrayList<Pedido> ListaPedidos;
+    private DataBaseHelper db;
 	
     
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.pedidos);
-
-        ListView = (ListView) findViewById(R.id.listaPedidos);
+        db = new DataBaseHelper(this);
+        
+       
         //TextView txtTotal = (TextView) findViewById(R.id.txtTotal);
         
         LinearLayout linearMesas = (LinearLayout) findViewById(R.id.linearLPedidos);
@@ -43,76 +41,99 @@ OnItemClickListener{
         TextView txtTitulo = (TextView) findViewById(R.id.txtNroMesa);
         txtTitulo.setText("Mesa "+ (getIntent().getIntExtra("mesa",0) + 1));    
        // txtTotal.setText("TOTAL $2000");
-        
-       // ListView.setBackgroundColor(Color.LTGRAY);
-        
-        //Initialize with empty data
-        ListaPedidos = new ArrayList<Pedido>();
+             
+      
         adapter = new PedidoAdapter();
         
-        ListView.setAdapter(adapter);
-        ListView.setOnItemClickListener(this);
+        cargarPedidosPorMesa((getIntent().getIntExtra("mesa",0) + 1));
+        
+        
+        setListAdapter(adapter);
+        getListView().setOnItemClickListener(this);
         
         //Start download
-        loadCategoryData();
+        loadPedidos();
         
            
     }
 	
+	private void cargarPedidosPorMesa(int idMesa)
+	{
+		Pedido p;
+		
+		Cursor cs = db.obtenerMenusConIdMesa(idMesa);
+		
+		if (cs != null) {
+		    while(cs.moveToNext()) {
+		    	p = new Pedido();
+		        p.setId(cs.getInt(0));
+		        p.setNombre(cs.getString(1));
+		        p.setCantidad(cs.getInt(2));
+		        p.setPrecio("$" + (cs.getInt(3) * p.getCantidad()));
+		        p.setEstado("Registrado");
+		        
+		        adapter.addPedido(p);   
+		    }
+		    cs.close();
+		}
+	}
+	
 	@Override
-	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-		// TODO Auto-generated method stub
+	public void onItemClick(AdapterView<?> arg0, View convertView, int position, long arg3) {
+	
+		Holder holder = new Holder();
+		holder = (Holder) convertView.getTag();
+		
+		Pedido item = (Pedido) adapter.getItem(position);
+        item.setCantidad((item.getCantidad()+1));
+        int precio = Integer.parseInt(item.getPrecio().substring(1));
+        item.setPrecio("$"+( precio + (precio/ (item.getCantidad()-1))));
+		
+        holder.txtCantidadPedido.setText(""+ item.getCantidad());
+		holder.txtPrecioPedido.setText(""+item.getPrecio());
+
 		
 	}
 	
-	private void loadCategoryData() {
+	
+	public void onItemLongClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+		
+		
+	}
+	
+	private void loadPedidos() {
 		adapter.notifyDataSetChanged();
 	}
 	
+	class Holder {
+		private TextView txtNombrePedido;
+		private TextView txtPrecioPedido;
+		private TextView txtCantidadPedido;
+		private TextView txtEstadoPedido;
+	}
+	
 	class PedidoAdapter extends BaseAdapter {
-		private ArrayList<Pedido> ListaPedidos2;
+		private ArrayList<Pedido> listaPedidos;
 		private LayoutInflater inflater;
 
 		public PedidoAdapter() {
-			ListaPedidos2 = ListaPedidos;
-			
-			Integer nroMesa = getIntent().getIntExtra("mesa",0);
-			Pedido p = new Pedido();
-			p.setNombre("MILANESA DE CARNE A LA NAPOLITANA CON PAPAS AL HORNO");
-			p.setCantidad("3");
-			p.setPrecio("$20");
-			p.setEstado("Tomado");
-			
-			ListaPedidos2.add(p);
-			
-			Pedido p2 = new Pedido();
-			p2.setNombre("Coca cola");
-			p2.setCantidad("5");
-			p2.setPrecio("$8922");
-			p2.setEstado("Registrado");
-			
-			ListaPedidos2.add(p2);
-			
-			Pedido p3 = new Pedido();
-			p3.setCantidad("23");
-			p3.setNombre("VACIO RELLENO ACOMPAÑADO DE CROQUETAS DE FIDEO.");
-			p3.setPrecio("$380,50");
-			p3.setEstado("Registrado");
-			
-			ListaPedidos2.add(p3);
-			
-			
+			listaPedidos = new ArrayList<Pedido>();
 			inflater = LayoutInflater.from(Pedidos.this);
 		}
 
+		public void addPedido(Pedido p)
+		{
+			if (p != null)
+				listaPedidos.add(p);
+		}
 		@Override
 		public int getCount() {
-			return ListaPedidos2.size();
+			return listaPedidos.size();
 		}
 
 		@Override
 		public Object getItem(int position) {
-			return ListaPedidos2.get(position);
+			return listaPedidos.get(position);
 		}
 
 		@Override
@@ -120,12 +141,7 @@ OnItemClickListener{
 			return position;
 		}
 
-		class Holder {
-			private TextView txtNombrePedido;
-			private TextView txtPrecioPedido;
-			private TextView txtCantidadPedido;
-			private TextView txtEstadoPedido;
-		}
+		
 		
 		@Override
 		public View getView(int position, View convertView, ViewGroup arg2) {
@@ -146,17 +162,19 @@ OnItemClickListener{
 			} else {
 				holder = (Holder) convertView.getTag();
 			}
-			Pedido item = ListaPedidos.get(position);
+			Pedido item = (Pedido) adapter.getItem(position);
 			
 			
 			holder.txtNombrePedido.setText(item.getNombre());
 			holder.txtPrecioPedido.setText(item.getPrecio());
-			holder.txtCantidadPedido.setText(item.getCantidad());
+			holder.txtCantidadPedido.setText(""+item.getCantidad());
 			holder.txtEstadoPedido.setText(item.getEstado());
 			
 			return convertView;
 		}
 
 	}
+	
+	
 
 }
