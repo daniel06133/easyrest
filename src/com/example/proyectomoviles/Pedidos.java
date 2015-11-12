@@ -83,15 +83,16 @@ public class Pedidos extends ListActivity implements OnItemClickListener
 	public void onItemClick(AdapterView<?> arg0, View convertView, int position, long arg3) {
 	
 		adapter.remove(position);
+		getListView().invalidateViews();
+		setListAdapter(adapter);
 		loadPedidos();
-		
 	}
 	
 	
 	public void onItemLongClick(AdapterView<?> arg0, View convertView, int position, long arg3) {
 		
-		//adapter.remove(position);
-		//loadPedidos();
+		adapter.remove(position);
+		loadPedidos();
 		
 	}
 	
@@ -163,11 +164,10 @@ public class Pedidos extends ListActivity implements OnItemClickListener
 						@Override
 						public void onClick(View v) {
 							
-							Pedido item = (Pedido) adapter.getItem(position);
-					        item.setCantidad((item.getCantidad()+1));
+							Pedido item = (Pedido) adapter.getItem(position);					        
 					        int precio = Integer.parseInt(item.getPrecio().substring(1));
-					        item.setPrecio("$"+( precio + (precio/ (item.getCantidad()-1))));
-							
+					        item.setPrecio("$"+( precio + (precio / (item.getCantidad()))));
+					        item.setCantidad((item.getCantidad()+1));
 					        holder.txtCantidadPedido.setText(""+ item.getCantidad());
 							holder.txtPrecioPedido.setText(""+item.getPrecio());
 						}
