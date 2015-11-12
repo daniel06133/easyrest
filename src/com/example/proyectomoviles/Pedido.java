@@ -2,12 +2,21 @@ package com.example.proyectomoviles;
 
 public class Pedido {
 
+	  private int id;
 	  private String nombre;
-	  private String cantidad;
+	  private int cantidad;
 	  private String estado;
 	  private String precio;
 	  
-	    public Pedido() {
+	    public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+		public Pedido() {
 	        super();
 	    }
 
@@ -19,11 +28,11 @@ public class Pedido {
 			this.nombre = nombre;
 		}
 
-		public String getCantidad() {
+		public int getCantidad() {
 			return cantidad;
 		}
 
-		public void setCantidad(String cantidad) {
+		public void setCantidad(int cantidad) {
 			this.cantidad = cantidad;
 		}
 
