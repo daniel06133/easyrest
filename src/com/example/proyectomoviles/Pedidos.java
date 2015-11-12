@@ -85,7 +85,7 @@ public class Pedidos extends ListActivity implements OnItemClickListener
 		adapter.remove(position);
 		getListView().invalidateViews();
 		setListAdapter(adapter);
-		loadPedidos();
+		loadPedidos(); 
 	}
 	
 	
