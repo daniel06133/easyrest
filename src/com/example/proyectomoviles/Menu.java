@@ -1,6 +1,8 @@
 package com.example.proyectomoviles;
 
-public class Menu {
+import java.io.Serializable;
+
+public class Menu implements Serializable{
 
 	private int idMenu;
 	private String nombreMenu;

@@ -15,6 +15,7 @@ import android.app.Dialog;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnClickListener;
 import android.content.DialogInterface.OnDismissListener;
@@ -35,11 +36,13 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 
+
 public class GridViewActivity extends ListActivity implements
 OnItemClickListener{
 	private DataBaseHelper db;
 	private MenuAdapter adapter;
 	private Menu menuToShow;
+	private Intent IntentMenu;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -111,10 +114,12 @@ OnItemClickListener{
 			private TextView txtMenu;
 			private TextView txtPrecio;
 			private ImageView imagenChicaMenu;
+			private Button btnAgregarMenu;
+
 		}
 
 		@Override
-		public View getView(int position, View convertView, ViewGroup arg2) {
+		public View getView(final int position, View convertView, ViewGroup arg2) {
 			Holder holder;
 			if (convertView == null) {
 				convertView = inflater.inflate(R.layout.menus, null);
@@ -125,7 +130,26 @@ OnItemClickListener{
 						.findViewById(R.id.txtMenu);
 				holder.txtPrecio = (TextView) convertView
 						.findViewById(R.id.txtPrecio);
+				holder.btnAgregarMenu.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						
+						createIntent();
+						Menu menuSeleccionado = (Menu) adapter.getItem(position);
+						
+						if(IntentMenu != null)
+						{
+							IntentMenu.putExtra("menu",menuSeleccionado);
+							
+							startActivity(IntentMenu);
+						}
+						
+					}
+				});
 				convertView.setTag(holder);
+				
+				
+				
 			} else {
 				holder = (Holder) convertView.getTag();
 			}
@@ -214,6 +238,9 @@ OnItemClickListener{
 
     }
 	
+	public void createIntent(){
+		IntentMenu= new Intent(this,Pedidos.class);
+	}
 /*
 	@Override
 	protected Dialog onCreateDialog(int id) {
