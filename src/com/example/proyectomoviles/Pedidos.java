@@ -22,8 +22,9 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 
-public class Pedidos extends ListActivity implements OnItemClickListener 
+public class Pedidos extends ListActivity implements OnItemClickListener,OnItemLongClickListener
 {
 
     private PedidoAdapter adapter;
@@ -51,7 +52,7 @@ public class Pedidos extends ListActivity implements OnItemClickListener
         
         setListAdapter(adapter);
         getListView().setOnItemClickListener(this);
-        
+        getListView().setOnItemLongClickListener(this);
         //Start download
         loadPedidos();
         
@@ -82,17 +83,16 @@ public class Pedidos extends ListActivity implements OnItemClickListener
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View convertView, int position, long arg3) {
 	
-		adapter.remove(position);
-		getListView().invalidateViews();
-		setListAdapter(adapter);
-		loadPedidos(); 
+		 
 	}
 	
 	
-	public void onItemLongClick(AdapterView<?> arg0, View convertView, int position, long arg3) {
-		
+	public boolean onItemLongClick(AdapterView<?> arg0, View convertView, int position, long arg3) {
 		adapter.remove(position);
+		getListView().invalidateViews();
+		setListAdapter(adapter);
 		loadPedidos();
+		return true;
 		
 	}
 	
