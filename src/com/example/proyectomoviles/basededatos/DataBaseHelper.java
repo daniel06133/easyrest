@@ -223,16 +223,16 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 		
 		
 		cv.put(colNombreMenu, "BIFE DE CHORIZO");
-		cv.put(colUrlFotoLowQMenu,"");
-		cv.put(colUrlFotoHighQMenu, "");
+		cv.put(colUrlFotoLowQMenu,"http://i1379.photobucket.com/albums/ah133/daniel0613/Entrada_zpslfqhwpmt.png");
+		cv.put(colUrlFotoHighQMenu, "http://i1379.photobucket.com/albums/ah133/daniel0613/Entrada_zpslfqhwpmt.png");
 		cv.put(colDescripcionMenu, "Bife de chorizo a la parrilla.");
 		cv.put(colPrecioMenu, 100);
 		cv.put(colIdCategoriaMenu, 4);
 		db.insert(menuTable, colIdMenu, cv);
 				
 		cv.put(colNombreMenu, "CABRITO AL HORNO");
-		cv.put(colUrlFotoLowQMenu,"");
-		cv.put(colUrlFotoHighQMenu, "");
+		cv.put(colUrlFotoLowQMenu,"http://i1379.photobucket.com/albums/ah133/daniel0613/Entrada_zpslfqhwpmt.png");
+		cv.put(colUrlFotoHighQMenu, "http://i1379.photobucket.com/albums/ah133/daniel0613/Entrada_zpslfqhwpmt.png");
 		cv.put(colDescripcionMenu, "Carne de cabrito al horno con reduccion de vino malbec.");
 		cv.put(colPrecioMenu, 150);
 		cv.put(colIdCategoriaMenu, 4);

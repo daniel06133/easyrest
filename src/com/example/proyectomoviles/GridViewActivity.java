@@ -28,6 +28,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -145,7 +146,36 @@ OnItemClickListener{
 			long arg3) 
 	{
 		menuToShow = (Menu) adapter.getItem(position);
-		//showDialog(menuToShow.getType());
+		// custom dialog
+					final Dialog dialog = new Dialog(this);
+					dialog.setContentView(R.layout.dialogomenu);
+					dialog.setTitle("Detalle Menú");
+
+					// set the custom dialog components - text, image and button
+					TextView textDescripcion = (TextView) dialog.findViewById(R.id.textDescripcion);
+					TextView textNombreMenu = (TextView) dialog.findViewById(R.id.textNombreMenu);
+					ImageView imagenGrandeMenu = (ImageView) dialog.findViewById(R.id.imagenGrandeMenu);
+					
+					
+/*
+					Button dialogButton = (Button) dialog.findViewById(R.id.btnAtras);
+					// if button is clicked, close the custom dialog
+					dialogButton.setOnClickListener(new OnClickListener() {
+						
+					
+
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							// TODO Auto-generated method stub
+							dialog.dismiss();
+						}
+					});
+					
+					*/
+					textDescripcion.setText(menuToShow.getDescripcionMenu());
+					textNombreMenu.setText(menuToShow.getNombreMenu());
+					new ImageLoadTask(menuToShow.getUrlImagenHighQ(), imagenGrandeMenu).execute();
+					dialog.show();
 		
 	}
 	
