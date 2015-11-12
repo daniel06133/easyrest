@@ -15,10 +15,10 @@
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="match_parent"
-        android:layout_height="214dp"
+        android:layout_height="500dp"
         android:layout_gravity="center_horizontal|center_vertical"
         android:gravity="center"
-        android:src="@drawable/ic_launcher" 
+        android:src="@drawable/logo" 
         />
 
 		</LinearLayout>	
