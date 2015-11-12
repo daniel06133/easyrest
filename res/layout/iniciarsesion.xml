@@ -1,28 +1,60 @@
-<?xml version="1.0" encoding="utf-8"?><LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+    >
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/linearImagen" 
+    android:gravity="center"
+    android:layout_gravity="center_horizontal|center_vertical">
 
- <EditText
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="match_parent"
+        android:layout_height="214dp"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:gravity="center"
+        android:src="@drawable/ic_launcher" 
+        />
+
+		</LinearLayout>	
+	<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/linearBarra" 
+    android:gravity="center_vertical"
+    android:layout_gravity="center_horizontal|center_vertical">
+		<EditText
         android:id="@+id/txtNombreUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"    
+        android:layout_gravity="center_horizontal|center_vertical"
         android:text="Nombre de Usuario" >
-    </EditText>
-
-    <EditText
+    	</EditText>
+		
+		<EditText
         android:id="@+id/txtContrasena"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPassword"
-        android:text="Contraseña" />
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:text="Contraseña" >
+        </EditText>
 
-    <Button
+		<Button
         android:id="@+id/btnIniciarSesion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Iniciar sesión" />
-
+        android:text="Iniciar sesión" 
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:gravity="center"
+        android:textStyle="bold"/>
+	</LinearLayout>		
 </LinearLayout>

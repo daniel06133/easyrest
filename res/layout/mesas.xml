@@ -10,7 +10,11 @@
 		            android:layout_width="match_parent"
 		            android:layout_height="wrap_content"
 		            android:gravity ="center"
-		            android:text="Mesas" />
+		            android:text="Mesas" 
+		            android:textSize="40sp"
+			        android:textStyle="bold"
+		            android:background="#5173DA"
+		            android:textColor="#FFFFFF"/>
 				
 	         
 			    <GridView
