@@ -66,7 +66,7 @@ OnItemClickListener{
 	private void loadMenuData() {
 		Menu menu;
 				
-		Cursor cs = db.obtenerMenusConIdCategoria(getIntent().getIntExtra("categoria", 4));
+		Cursor cs = db.obtenerMenusConIdCategoria(getIntent().getIntExtra("categoria", 1));
 		
 		if (cs != null) {
 		    while(cs.moveToNext()) {
