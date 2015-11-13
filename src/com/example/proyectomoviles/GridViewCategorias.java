@@ -159,7 +159,7 @@ private void loadCategoryData() {
 		
 		if(intent != null)
 		{
-			intent.putExtra("categoria",idCategoria);
+			intent.putExtra("categoria",idCategoria); 
 			//Bundle b = getIntent().getExtras();
 			//intent.putExtra("pedidosTomados",b.getSerializable("pedidosTomados") );
 			//if(listaPedidosTomados != null)
@@ -179,7 +179,7 @@ private void loadCategoryData() {
 		/*** Sólo se ejecuta cuando el activity se llamó con
 		 * startActivityForResult
 		***/
-		if (requestCode == 90) {
+		if (requestCode == 90 & resultCode == RESULT_OK) {
 			
 			Intent intent = new Intent(this, Pedidos.class);
 			Bundle b = data.getExtras();
