@@ -75,7 +75,6 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
         setListAdapter(adapter);
         getListView().setOnItemClickListener(this);
         getListView().setOnItemLongClickListener(this);
-        //Start download
         loadPedidos();
     }
 	
@@ -285,12 +284,8 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 		
 		if (v.getId() == R.id.btnAgregarMenu) {
 			Intent intent = new Intent((this),GridViewCategorias.class);
-			//intent.putExtra("pedidosTomados",listaPedidosTomados );
-			//if(listaPedidosTomados.size() != 0)
-			//intent.putExtra("menusTomados", listaPedidosTomados);
-			if (isIntentAvailable(intent)) {
+				if (isIntentAvailable(intent)) {
 				startActivityForResult(intent, 100 );
-				//startActivity(intent);
 			}
 		}
 		
@@ -305,12 +300,10 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 		super.onActivityResult(requestCode, resultCode, data);
 		/*** Sólo se ejecuta cuando el activity se llamó con
 		 * startActivityForResult
-		***/
-		
-		
-		Bundle b = data.getExtras();
+		***/	
+		//Bundle b = data.getExtras();
 		if (requestCode == 100  & resultCode == RESULT_OK){
-			Pedido p = (Pedido)b.getSerializable("pedidoTomado");
+			Pedido p = (Pedido)data.getSerializableExtra("pedidoTomado");
 			adapter.addPedido(p);
 		    loadPedidos();
 		}

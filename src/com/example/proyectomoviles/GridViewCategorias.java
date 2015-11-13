@@ -29,7 +29,6 @@ OnItemClickListener{
     private ArrayList<GridItem> mGridData1;
     static GridViewCategorias activityCategorias;
     
-  //  private ArrayList<Pedido> listaPedidosTomados;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +37,7 @@ OnItemClickListener{
 
         mGridView = (GridView) findViewById(R.id.gvCategorias);
         
-       // listaPedidosTomados = (ArrayList<Pedido>)getIntent().getSerializableExtra("menusTomados");
-        
+       
         	
         //Initialize with empty data
         mGridData1 = new ArrayList<GridItem>();
@@ -55,8 +53,6 @@ OnItemClickListener{
     }
     
 private void loadCategoryData() {
-		
-		
 		adapter.notifyDataSetChanged();
 	}
 
@@ -113,7 +109,7 @@ private void loadCategoryData() {
 			GridItem item = mGridData.get(position);
 			if(item !=null && holder != null && holder.descripcion != null && holder.imagen != null){
 			holder.descripcion.setText(item.getTitle());
-			//setiar imagen
+			
 			new AsyncImageLoader(item.getImage(), holder.imagen).execute();}
 			
 			return convertView;
@@ -160,11 +156,6 @@ private void loadCategoryData() {
 		if(intent != null)
 		{
 			intent.putExtra("categoria",idCategoria); 
-			//Bundle b = getIntent().getExtras();
-			//intent.putExtra("pedidosTomados",b.getSerializable("pedidosTomados") );
-			//if(listaPedidosTomados != null)
-			//	intent.putExtra("menusTomadosDesdeCategoria", listaPedidosTomados);
-			//startActivity(intent);
 			startActivityForResult(intent, 90 );
 		}	
 		

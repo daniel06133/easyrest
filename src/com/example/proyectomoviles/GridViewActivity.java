@@ -50,7 +50,6 @@ OnItemClickListener{
 	private Intent intent2;
 	static GridViewActivity activityMenu;
 	
-	//private ArrayList<Pedido> listaPedidosTomadosDesdeCarta;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -153,29 +152,11 @@ OnItemClickListener{
 						
 						Menu menuSeleccionado =(Menu) adapter.getItem( lista.getPositionForView(l));
 						createIntent();
-						//Menu menuSeleccionado = (Menu) adapter.getItem(position);
-						
+												
 						if(IntentMenu != null)
 						{
 							IntentMenu.putExtra("menu",menuSeleccionado);
-							/*
-							listaPedidosTomadosDesdeCarta = (ArrayList<Pedido>) getIntent().getSerializableExtra("menusTomadosDesdeCategoria");
-							Pedido p = new Pedido();
-							p.setId(menuSeleccionado.getIdMenu());
-							p.setCantidad(1);
-							p.setEstado("Tomado");
-							p.setPrecio(menuSeleccionado.getPrecioMenu());
-							p.setNombre(menuSeleccionado.getNombreMenu());
-							if(listaPedidosTomadosDesdeCarta == null)
-							{
-								listaPedidosTomadosDesdeCarta = new ArrayList<Pedido>();
-								listaPedidosTomadosDesdeCarta.add(p);
-							}
-							//aca esta el error cuando intento iniciar la actividad con este putextra 
-							//IntentMenu.putExtra("menus", listaPedidosTomadosDesdeCarta);*/
 							
-							//Bundle b = getIntent().getExtras();
-							//ArrayList<Pedido> pedidos = (ArrayList<Pedido>) b.getSerializable("pedidosTomados");
 							Pedido p = new Pedido();
 							p.setId(menuSeleccionado.getIdMenu());
 							p.setCantidad(1);
@@ -183,16 +164,9 @@ OnItemClickListener{
 							p.setPrecio("$"+menuSeleccionado.getPrecioMenu());
 							p.setNombre(menuSeleccionado.getNombreMenu());
 							
-							//pedidos.add(p);
 							intent2.putExtra("pedidoTomado",p );
 							setResult(RESULT_OK, intent2);
-							finish();
-							
-							//startActivity(IntentMenu);
-							//GridViewCategorias.getInstance().finish();
-							//GridViewActivity.getInstance().finish();
-							
-							
+							finish();							
 						}
 						
 					}
@@ -221,32 +195,16 @@ OnItemClickListener{
 			long arg3) 
 	{
 		menuToShow = (Menu) adapter.getItem(position);
-		// custom dialog
+		
 					final Dialog dialog = new Dialog(this);
 					dialog.setContentView(R.layout.dialogomenu);
 					dialog.setTitle("Detalle Menú");
 
-					// set the custom dialog components - text, image and button
 					TextView textDescripcion = (TextView) dialog.findViewById(R.id.textDescripcion);
 					TextView textNombreMenu = (TextView) dialog.findViewById(R.id.textNombreMenu);
 					ImageView imagenGrandeMenu = (ImageView) dialog.findViewById(R.id.imagenGrandeMenu);
 					
-					
-/*
-					Button dialogButton = (Button) dialog.findViewById(R.id.btnAtras);
-					// if button is clicked, close the custom dialog
-					dialogButton.setOnClickListener(new OnClickListener() {
-						
-					
-
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							// TODO Auto-generated method stub
-							dialog.dismiss();
-						}
-					});
-					
-					*/
+		
 					textDescripcion.setText(menuToShow.getDescripcionMenu());
 					textNombreMenu.setText(menuToShow.getNombreMenu());
 					new ImageLoadTask(menuToShow.getUrlImagenHighQ(), imagenGrandeMenu).execute();
@@ -300,119 +258,7 @@ OnItemClickListener{
 	}
 	
 
-/*
-	@Override
-	protected Dialog onCreateDialog(int id) {
-		Dialog dialog = null;
-		if (id == DialogInfo.TYPE_ALERT) {
-			dialog = createAlertDialog();
-		} else if (id == DialogInfo.TYPE_CUSTOM) {
-			dialog = createCustomDialog();
-		} else if (id == DialogInfo.TYPE_OK_CANCEL) {
-			dialog = createOkCancelDialog();
-		} else if (id == DialogInfo.TYPE_PROGRESS) {
-			dialog = createProgressDialog();
-		} else if (id == DialogInfo.TYPE_ALERT_VARIABLE) {
-			dialog = createAlertDialog();
-		} else {
-			dialog = super.onCreateDialog(id);
-		}
-		return dialog;
-	}
 
-	@Override
-	protected void onPrepareDialog(int id, Dialog dialog) {
-		super.onPrepareDialog(id, dialog);
-		if (id == DialogInfo.TYPE_ALERT_VARIABLE) {
-			((AlertDialog) dialog).setMessage(dialogInfoToShow.getMessage()
-					+ System.currentTimeMillis());
-		}
-	}
-
-	private Dialog createProgressDialog() {
-
-		OnDismissListener onDimiss = new OnDismissListener() {
-
-			@Override
-			public void onDismiss(DialogInterface dialog) {
-				// Se agrega esto para lograr que el progress se ejecute siempre
-				// y no sólo la primera vez
-				removeDialog(dialogInfoToShow.getType());
-			}
-		};
-
-		ProgressDialog progressDialog;
-		progressDialog = new ProgressDialog(this);
-		progressDialog.setOnDismissListener(onDimiss);
-		progressDialog.setTitle(dialogInfoToShow.getTitle());
-		progressDialog.setMessage(dialogInfoToShow.getMessage());
-		progressDialog.setCancelable(true);
-		return progressDialog;
-	}
-
-	private Dialog createOkCancelDialog() {
-		OnClickListener clickOk = new OnClickListener() {
-
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				Toast toast = Toast.makeText(MainAndroidDialogs.this,
-						"Ok seleccionado", Toast.LENGTH_LONG);
-				toast.show();
-			}
-		};
-
-		OnClickListener clickCancel = new OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				Toast toast = Toast.makeText(MainAndroidDialogs.this,
-						"Cancelado seleccionado", Toast.LENGTH_LONG);
-				toast.show();
-			}
-		};
-
-		OnCancelListener onCancel = new OnCancelListener() {
-
-			@Override
-			public void onCancel(DialogInterface dialog) {
-				Toast toast = Toast.makeText(MainAndroidDialogs.this,
-						"El usuario no seleccionó opción", Toast.LENGTH_LONG);
-				toast.show();
-			}
-		};
-
-		Dialog dialog = new AlertDialog.Builder(this)
-				.setIcon(R.drawable.icon)
-				.setOnCancelListener(onCancel)
-				.setTitle(dialogInfoToShow.getTitle())
-				.setPositiveButton(dialogInfoToShow.getBtLabelOk(), clickOk)
-				.setNegativeButton(dialogInfoToShow.getBtLabelCancel(),
-						clickCancel).setMessage(dialogInfoToShow.getMessage())
-				.create();
-		return dialog;
-	}
-
-	private Dialog createCustomDialog() {
-		Dialog dialog = new Dialog(this);
-		dialog.setContentView(R.layout.custom_dialog);
-		dialog.setTitle(dialogInfoToShow.getTitle());
-
-		TextView text = (TextView) dialog.findViewById(R.id.text);
-		text.setText(dialogInfoToShow.getMessage());
-		ImageView image = (ImageView) dialog.findViewById(R.id.image);
-		image.setImageResource(R.drawable.icon_message);
-
-		return dialog;
-	}
-
-	private Dialog createAlertDialog() {
-		Dialog dialog = new AlertDialog.Builder(this).setIcon(R.drawable.icon)
-				.setTitle(dialogInfoToShow.getTitle())
-				.setPositiveButton(dialogInfoToShow.getBtLabelOk(), null)
-				.setMessage(dialogInfoToShow.getMessage()).create();
-		return dialog;
-
-	 
-	  */  
 		
 	}
 	
