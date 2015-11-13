@@ -24,7 +24,7 @@
 						            android:text="Mesa " 
 						            android:layout_marginLeft="25dp"/>
 							   		 <ImageButton
-							        android:id="@+id/imgOk"
+							        android:id="@+id/btnRegistrarPedido"
 							        android:layout_width="150dp"
 							        android:layout_height="wrap_content"
 							        android:layout_weight="0.4"							    

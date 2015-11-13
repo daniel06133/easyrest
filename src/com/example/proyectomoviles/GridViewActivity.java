@@ -57,10 +57,7 @@ OnItemClickListener{
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.listamenus);
-		db = new DataBaseHelper(this);
-		
-		
-		
+		db = new DataBaseHelper(this);	
 		adapter = new MenuAdapter();
 		activityMenu=this;
 		setListAdapter(adapter);

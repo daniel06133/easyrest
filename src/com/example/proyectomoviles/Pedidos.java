@@ -35,7 +35,7 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
     private PedidoAdapter adapter;
     private DataBaseHelper db;
     private ImageButton btnAgregarPedido;
-    
+    private ImageButton btnRegistrarPedido;
     private ArrayList<Pedido> listaPedidosTomados;
     //private ArrayList<Pedido> listaPedidosTomadosDesdeCarta;
 	@Override
@@ -56,6 +56,8 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
         
         btnAgregarPedido = (ImageButton) findViewById(R.id.btnAgregarMenu);
         btnAgregarPedido.setOnClickListener(this);
+        btnRegistrarPedido = (ImageButton) findViewById(R.id.btnRegistrarPedido);
+        btnRegistrarPedido.setOnClickListener(this);
        
         adapter = new PedidoAdapter();
         cargarPedidosPorMesa((getIntent().getIntExtra("mesa",0) + 1));
@@ -105,13 +107,10 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 		        p.setEstado("Registrado");
 		        
 		        adapter.addPedido(p);   
-		    }
-		    cs.close();
-		    
-		    
+		    }		    
 		}
-		
-		p = new Pedido();
+		 cs.close();		   
+		/*p = new Pedido();
         p.setId(22);
         p.setNombre("probando");
         p.setCantidad(3);
@@ -159,7 +158,7 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
         p.setEstado("Registrado");
         
         adapter.addPedido(p); 
-		
+		*/
 	
 	}
 	
@@ -330,14 +329,32 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 
 	@Override
 	public void onClick(View v) {
-		Intent intent = new Intent((this),GridViewCategorias.class);
-		//intent.putExtra("pedidosTomados",listaPedidosTomados );
-		//if(listaPedidosTomados.size() != 0)
-		//intent.putExtra("menusTomados", listaPedidosTomados);
-		if (isIntentAvailable(intent)) {
-			startActivityForResult(intent, 100 );
-			//startActivity(intent);
+		if (v.getId() == R.id.btnRegistrarPedido ) {
+		
+			for (int i = 0; i < adapter.getCount(); i++) {
+				if (((Pedido)adapter.getItem(i)).getEstado().equals("Tomado")) {
+					db.insertarMenuEnMesa((getIntent().getIntExtra("mesa",0) + 1), ((Pedido)adapter.getItem(i)).getId(), ((Pedido)adapter.getItem(i)).getCantidad());
+				}
+			}
+			adapter = null;
+			adapter = new PedidoAdapter();
+	        cargarPedidosPorMesa((getIntent().getIntExtra("mesa",0) + 1));
+			
 		}
+		
+		if (v.getId() == R.id.btnAgregarMenu) {
+			Intent intent = new Intent((this),GridViewCategorias.class);
+			//intent.putExtra("pedidosTomados",listaPedidosTomados );
+			//if(listaPedidosTomados.size() != 0)
+			//intent.putExtra("menusTomados", listaPedidosTomados);
+			if (isIntentAvailable(intent)) {
+				startActivityForResult(intent, 100 );
+				//startActivity(intent);
+			}
+		}
+		
+		
+		
 		
 		
 	}
@@ -348,8 +365,10 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 		/*** Sólo se ejecuta cuando el activity se llamó con
 		 * startActivityForResult
 		***/
+		
+		
 		Bundle b = data.getExtras();
-		if (requestCode == 100) {
+		if (requestCode == 100  & resultCode == RESULT_OK){
 			Pedido p = (Pedido)b.getSerializable("pedidoTomado");
 			adapter.addPedido(p);
 		    loadPedidos();

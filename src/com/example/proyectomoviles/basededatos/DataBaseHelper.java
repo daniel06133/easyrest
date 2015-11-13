@@ -19,6 +19,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 	static final String colPassword = "password";
 	
 	static final String menuXMesaTable = "MenuXMesa";
+	static final String colIdMenuXMesa = "idMenuXMesa";
 	static final String colNumeroMesa = "numeroMesa";
 	static final String colNumeroMenu = "numeroMenu";
 	static final String colCantidad = "cantidad";
@@ -54,9 +55,9 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 				+ colIdCategoriaMenu + " INTEGER);");
 		
 		
-		db.execSQL("CREATE TABLE " + menuXMesaTable + " (" + colNumeroMesa
+		db.execSQL("CREATE TABLE " + menuXMesaTable + " (" + colIdMenuXMesa + "  INTEGER PRIMARY KEY AUTOINCREMENT, " + colNumeroMesa
 				+ " INTEGER, " + colNumeroMenu + " INTEGER, "
-				+ colCantidad + " INTEGER , PRIMARY KEY (" + colNumeroMesa + ", " + colNumeroMenu +"),"
+				+ colCantidad + " INTEGER , "
 				+ " FOREIGN KEY (" + colNumeroMenu
 				+ ") REFERENCES " + menuTable + " (" + colIdMenu + "));");
 		
