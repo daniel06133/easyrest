@@ -110,55 +110,6 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 		    }		    
 		}
 		 cs.close();		   
-		/*p = new Pedido();
-        p.setId(22);
-        p.setNombre("probando");
-        p.setCantidad(3);
-        p.setPrecio("$" + (30 * p.getCantidad()));
-        p.setEstado("Registrado");
-        
-        adapter.addPedido(p); 
-        p = new Pedido();
-        p.setId(22);
-        p.setNombre("probando");
-        p.setCantidad(3);
-        p.setPrecio("$" + (30 * p.getCantidad()));
-        p.setEstado("Registrado");
-        
-        adapter.addPedido(p); 
-        p = new Pedido();
-        p.setId(22);
-        p.setNombre("probando");
-        p.setCantidad(3);
-        p.setPrecio("$" + (30 * p.getCantidad()));
-        p.setEstado("Registrado");
-        
-        adapter.addPedido(p); 
-        p = new Pedido();
-        p.setId(22);
-        p.setNombre("probandoUnico");
-        p.setCantidad(3);
-        p.setPrecio("$" + (30 * p.getCantidad()));
-        p.setEstado("Tomado");
-        
-        adapter.addPedido(p); 
-        p = new Pedido();
-        p.setId(22);
-        p.setNombre("probando");
-        p.setCantidad(3);
-        p.setPrecio("$" + (30 * p.getCantidad()));
-        p.setEstado("Registrado");
-        
-        adapter.addPedido(p); 
-        p = new Pedido();
-        p.setId(22);
-        p.setNombre("probando");
-        p.setCantidad(3);
-        p.setPrecio("$" + (30 * p.getCantidad()));
-        p.setEstado("Registrado");
-        
-        adapter.addPedido(p); 
-		*/
 	
 	}
 	
@@ -338,7 +289,10 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 			}
 			adapter = null;
 			adapter = new PedidoAdapter();
+			setListAdapter(adapter);
+			getListView().invalidateViews();
 	        cargarPedidosPorMesa((getIntent().getIntExtra("mesa",0) + 1));
+	        loadPedidos();
 			
 		}
 		
