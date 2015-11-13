@@ -5,15 +5,15 @@ import java.util.List;
 
 import com.example.proyectomoviles.basededatos.DataBaseHelper;
 
-
 import android.app.ListActivity;
-
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnLongClickListener;
@@ -25,6 +25,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 
@@ -34,14 +35,16 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
     private PedidoAdapter adapter;
     private DataBaseHelper db;
     private ImageButton btnAgregarPedido;
-   // private ArrayList<Pedido> listaPedidosTomados;
+    
+    private ArrayList<Pedido> listaPedidosTomados;
     //private ArrayList<Pedido> listaPedidosTomadosDesdeCarta;
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
+    	
         setContentView(R.layout.pedidos);
         db = new DataBaseHelper(this);     
-       // listaPedidosTomados = new ArrayList<Pedido>();
+        listaPedidosTomados = new ArrayList<Pedido>();
         
         //TextView txtTotal = (TextView) findViewById(R.id.txtTotal);
         
@@ -108,6 +111,55 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 		    
 		}
 		
+		p = new Pedido();
+        p.setId(22);
+        p.setNombre("probando");
+        p.setCantidad(3);
+        p.setPrecio("$" + (30 * p.getCantidad()));
+        p.setEstado("Registrado");
+        
+        adapter.addPedido(p); 
+        p = new Pedido();
+        p.setId(22);
+        p.setNombre("probando");
+        p.setCantidad(3);
+        p.setPrecio("$" + (30 * p.getCantidad()));
+        p.setEstado("Registrado");
+        
+        adapter.addPedido(p); 
+        p = new Pedido();
+        p.setId(22);
+        p.setNombre("probando");
+        p.setCantidad(3);
+        p.setPrecio("$" + (30 * p.getCantidad()));
+        p.setEstado("Registrado");
+        
+        adapter.addPedido(p); 
+        p = new Pedido();
+        p.setId(22);
+        p.setNombre("probandoUnico");
+        p.setCantidad(3);
+        p.setPrecio("$" + (30 * p.getCantidad()));
+        p.setEstado("Tomado");
+        
+        adapter.addPedido(p); 
+        p = new Pedido();
+        p.setId(22);
+        p.setNombre("probando");
+        p.setCantidad(3);
+        p.setPrecio("$" + (30 * p.getCantidad()));
+        p.setEstado("Registrado");
+        
+        adapter.addPedido(p); 
+        p = new Pedido();
+        p.setId(22);
+        p.setNombre("probando");
+        p.setCantidad(3);
+        p.setPrecio("$" + (30 * p.getCantidad()));
+        p.setEstado("Registrado");
+        
+        adapter.addPedido(p); 
+		
 	
 	}
 	
@@ -146,6 +198,7 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 	class PedidoAdapter extends BaseAdapter {
 		private ArrayList<Pedido> listaPedidos;
 		private LayoutInflater inflater;
+		private Context contexto;
 
 		public PedidoAdapter() {
 			listaPedidos = new ArrayList<Pedido>();
@@ -157,17 +210,30 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 			listaPedidos = pedidos;
 			inflater = LayoutInflater.from(Pedidos.this);
 		}
+		
+		public PedidoAdapter(Context c)
+		{
+			inflater = LayoutInflater.from(c);
+			contexto = c;
+		}
  
 		
 		public ArrayList<Pedido> getPedidos()
 		{
 			return listaPedidos;}
 		
+		public void setPedidos(ArrayList<Pedido> pedidos)
+		{
+			listaPedidos = pedidos;
+		}
+		
+		
 		public void addPedido(Pedido p)
 		{
 			if (p != null)
 				listaPedidos.add(p);
 		}
+		
 		@Override
 		public int getCount() {
 			return listaPedidos.size();
@@ -220,16 +286,13 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 				*/
 							   
 							    Pedido item =(Pedido) adapter.getItem( lista.getPositionForView(l));
-							    
-							    ArrayList<Pedido> p = adapter.getPedidos();
-							    
+							  							    
 							    if(item.getEstado().equals("Tomado")){
 						        int precio = Integer.parseInt(item.getPrecio().substring(1));
 						        item.setPrecio("$"+( precio + (precio / (item.getCantidad()))));
-						        item.setCantidad((item.getCantidad()+1));
+						        item.setCantidad((item.getCantidad()+1));				        
 						        
-						        p.add(lista.getPositionForView(l), item);
-						        adapter = new PedidoAdapter(p);
+						        
 						        
 						        holder.txtCantidadPedido.setText(""+ item.getCantidad());
 								holder.txtPrecioPedido.setText(""+item.getPrecio());
@@ -268,14 +331,31 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 	@Override
 	public void onClick(View v) {
 		Intent intent = new Intent((this),GridViewCategorias.class);
+		//intent.putExtra("pedidosTomados",listaPedidosTomados );
 		//if(listaPedidosTomados.size() != 0)
 		//intent.putExtra("menusTomados", listaPedidosTomados);
 		if (isIntentAvailable(intent)) {
-			startActivity(intent);
+			startActivityForResult(intent, 100 );
+			//startActivity(intent);
 		}
 		
 		
 	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		/*** Sólo se ejecuta cuando el activity se llamó con
+		 * startActivityForResult
+		***/
+		Bundle b = data.getExtras();
+		if (requestCode == 100) {
+			Pedido p = (Pedido)b.getSerializable("pedidoTomado");
+			adapter.addPedido(p);
+		    loadPedidos();
+		}
+	}
+	
 	private boolean isIntentAvailable(Intent intent) {
 		final PackageManager packageManager = getPackageManager();
 		List<ResolveInfo> list = packageManager.queryIntentActivities(intent,
@@ -283,4 +363,5 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 		return list.size() > 0;
 	}
 	
+
 }

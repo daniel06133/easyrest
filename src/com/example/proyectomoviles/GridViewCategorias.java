@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import com.example.proyectomoviles.R;
 
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -159,14 +160,32 @@ private void loadCategoryData() {
 		if(intent != null)
 		{
 			intent.putExtra("categoria",idCategoria);
+			//Bundle b = getIntent().getExtras();
+			//intent.putExtra("pedidosTomados",b.getSerializable("pedidosTomados") );
 			//if(listaPedidosTomados != null)
 			//	intent.putExtra("menusTomadosDesdeCategoria", listaPedidosTomados);
-			startActivity(intent);
+			//startActivity(intent);
+			startActivityForResult(intent, 90 );
 		}	
 		
 	}
 	
 	public static GridViewCategorias getInstance(){
 		return activityCategorias;
+	}
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		/*** Sólo se ejecuta cuando el activity se llamó con
+		 * startActivityForResult
+		***/
+		if (requestCode == 90) {
+			
+			Intent intent = new Intent(this, Pedidos.class);
+			Bundle b = data.getExtras();
+			intent.putExtra("pedidoTomado", b.getSerializable("pedidoTomado"));
+			setResult(RESULT_OK, intent);
+			finish();
+		}
 	}
 }
