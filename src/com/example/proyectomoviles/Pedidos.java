@@ -5,8 +5,10 @@ import java.util.List;
 
 import com.example.proyectomoviles.basededatos.DataBaseHelper;
 
+import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -14,6 +16,7 @@ import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnLongClickListener;
@@ -37,11 +40,12 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
     private ImageButton btnAgregarPedido;
     private ImageButton btnRegistrarPedido;
     private ArrayList<Pedido> listaPedidosTomados;
+    private boolean isBack;
     //private ArrayList<Pedido> listaPedidosTomadosDesdeCarta;
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
-    	
+    	isBack = false;
         setContentView(R.layout.pedidos);
         db = new DataBaseHelper(this);     
         listaPedidosTomados = new ArrayList<Pedido>();
@@ -334,6 +338,39 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 		List<ResolveInfo> list = packageManager.queryIntentActivities(intent,
 				PackageManager.MATCH_DEFAULT_ONLY);
 		return list.size() > 0;
+	}
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+	    if (keyCode == KeyEvent.KEYCODE_BACK) {
+	        if(!isBack)
+	        	showDialog();
+	        else
+	        	isBack = true;
+	        return true;
+	    }
+
+	    return super.onKeyDown(keyCode, event);
+	}
+	private void showDialog () {
+	    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+	    builder.setTitle("Alert");
+	    builder.setMessage("¿Está seguro que desea salir? Se perderán aquellos pedidos no registrados.");
+	    
+	    builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+	        @Override
+	        public void onClick(DialogInterface dialog, int which) {
+	            finish();
+	        }
+	    });
+
+	    builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+	        @Override
+	        public void onClick(DialogInterface dialog, int which) {
+	            isBack = false;
+	        }
+	    });
+	    builder.show();
 	}
 	
 
