@@ -33,6 +33,8 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
@@ -149,9 +151,12 @@ OnItemClickListener{
 				holder.imgButtonAgregar.setOnClickListener(new View.OnClickListener() {
 					@Override
 					public void onClick(View v) {
+						LinearLayout l =(LinearLayout) v.getParent();
+						ListView lista = (ListView)l.getParent();
 						
+						Menu menuSeleccionado =(Menu) adapter.getItem( lista.getPositionForView(l));
 						createIntent();
-						Menu menuSeleccionado = (Menu) adapter.getItem(position);
+						//Menu menuSeleccionado = (Menu) adapter.getItem(position);
 						
 						if(IntentMenu != null)
 						{
