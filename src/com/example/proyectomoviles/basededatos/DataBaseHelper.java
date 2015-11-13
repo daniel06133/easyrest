@@ -730,8 +730,8 @@ void insertarMenusPostres(SQLiteDatabase db) {
 					+ usersTable + "." + colUsername + ", "
 					+ usersTable + "." + colPassword 
 					+" from " + usersTable 
-					+" where "+ usersTable + "." + colUsername + " LIKE '" + usuario + "' "
-					+" AND "+ usersTable + "." + colPassword + "LIKE '" + contraseña +"' ", null);
+					+" where "+ usersTable + "." + colUsername + " = '" + usuario + "' "
+					+" AND "+ usersTable + "." + colPassword + " = '" + contraseña +"' ", null);
 			int x = cur.getCount();
 			if(x == 1)
 				return true;
