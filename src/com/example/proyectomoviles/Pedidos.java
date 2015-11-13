@@ -5,10 +5,9 @@ import java.util.List;
 
 import com.example.proyectomoviles.basededatos.DataBaseHelper;
 
-import android.app.Activity;
+
 import android.app.ListActivity;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
+
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -35,13 +34,15 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
     private PedidoAdapter adapter;
     private DataBaseHelper db;
     private ImageButton btnAgregarPedido;
-    
+   // private ArrayList<Pedido> listaPedidosTomados;
+    //private ArrayList<Pedido> listaPedidosTomadosDesdeCarta;
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.pedidos);
-        db = new DataBaseHelper(this);      
-       
+        db = new DataBaseHelper(this);     
+       // listaPedidosTomados = new ArrayList<Pedido>();
+        
         //TextView txtTotal = (TextView) findViewById(R.id.txtTotal);
         
         LinearLayout linearMesas = (LinearLayout) findViewById(R.id.linearLPedidos);
@@ -55,6 +56,17 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
        
         adapter = new PedidoAdapter();
         cargarPedidosPorMesa((getIntent().getIntExtra("mesa",0) + 1));
+        /*
+        listaPedidosTomadosDesdeCarta = (ArrayList<Pedido>)getIntent().getSerializableExtra("menus");
+        if(listaPedidosTomadosDesdeCarta != null){
+	        if(listaPedidosTomados.size() != listaPedidosTomadosDesdeCarta.size())
+	        {
+	        	Pedido p = listaPedidosTomadosDesdeCarta.get(listaPedidosTomadosDesdeCarta.size()-1);
+	        	adapter.addPedido(p);
+	        	listaPedidosTomados.add(p);
+	        }
+        }*/
+        
         Menu menu = (Menu) getIntent().getSerializableExtra("menu");
         
         if (menu != null) {
@@ -63,7 +75,7 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
         	p.setEstado("Tomado");
         	p.setId(menu.getIdMenu());
         	p.setNombre(menu.getNombreMenu());
-        	p.setPrecio(menu.getPrecioMenu());
+        	p.setPrecio("$"+menu.getPrecioMenu());
         	adapter.addPedido(p);
 		}     
                 
@@ -92,7 +104,11 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 		        adapter.addPedido(p);   
 		    }
 		    cs.close();
+		    
+		    
 		}
+		
+	
 	}
 	
 	@Override
@@ -103,12 +119,16 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 	
 	
 	public boolean onItemLongClick(AdapterView<?> arg0, View convertView, int position, long arg3) {
-		adapter.remove(position);
-		getListView().invalidateViews();
-		setListAdapter(adapter);
-		loadPedidos();
-		return true;
 		
+		Pedido item = (Pedido) adapter.getItem(position);
+		if(!item.getEstado().equals("Registrado"))
+		{
+				//listaPedidosTomados.remove((position -(adapter.getCount()-listaPedidosTomados.size())));
+				adapter.remove(position);
+				getListView().invalidateViews();
+				loadPedidos();				
+		}
+		return true;
 	}
 	
 	private void loadPedidos() {
@@ -131,7 +151,18 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 			listaPedidos = new ArrayList<Pedido>();
 			inflater = LayoutInflater.from(Pedidos.this);
 		}
-
+		
+		public PedidoAdapter(ArrayList<Pedido> pedidos)
+		{
+			listaPedidos = pedidos;
+			inflater = LayoutInflater.from(Pedidos.this);
+		}
+ 
+		
+		public ArrayList<Pedido> getPedidos()
+		{
+			return listaPedidos;}
+		
 		public void addPedido(Pedido p)
 		{
 			if (p != null)
@@ -159,8 +190,9 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 		
 		
 		@Override
-		public View getView(final int position, View convertView, ViewGroup arg2) {
+		public View getView(final int position,View convertView, ViewGroup arg2) {
 			final Holder holder;
+			
 			if (convertView == null) {
 				holder = new Holder();
 				convertView = inflater.inflate(R.layout.pedido,arg2,false);
@@ -179,18 +211,46 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 						@Override
 						public void onClick(View v) {
 							
-							Pedido item = (Pedido) adapter.getItem(position);					        
-					        int precio = Integer.parseInt(item.getPrecio().substring(1));
-					        item.setPrecio("$"+( precio + (precio / (item.getCantidad()))));
-					        item.setCantidad((item.getCantidad()+1));
-					        holder.txtCantidadPedido.setText(""+ item.getCantidad());
-							holder.txtPrecioPedido.setText(""+item.getPrecio());
+							LinearLayout l =(LinearLayout) v.getParent();
+							ListView lista = (ListView)l.getParent();
+							
+							
+							/*TextView t = (TextView)l.getChildAt(3);
+							if(t.getText().equals("Tomado")){
+				*/
+							   
+							    Pedido item =(Pedido) adapter.getItem( lista.getPositionForView(l));
+							    
+							    ArrayList<Pedido> p = adapter.getPedidos();
+							    
+							    if(item.getEstado().equals("Tomado")){
+						        int precio = Integer.parseInt(item.getPrecio().substring(1));
+						        item.setPrecio("$"+( precio + (precio / (item.getCantidad()))));
+						        item.setCantidad((item.getCantidad()+1));
+						        
+						        p.add(lista.getPositionForView(l), item);
+						        adapter = new PedidoAdapter(p);
+						        
+						        holder.txtCantidadPedido.setText(""+ item.getCantidad());
+								holder.txtPrecioPedido.setText(""+item.getPrecio());
+								loadPedidos();}
+								//aca creo que estaria pudiendo setear el texto nuevo de cantidad y precio 
+								//de la fila que le clickio el signo mas. Pero no estariamos 
+								//actualizando ese item del adapter..lo cual luego nos traeria inconsistencias
+							/*}
+							else
+							{
+								//mostrar toast o algo que avise que no se puede porque ya esta registrado
+								//en cocina
+							}*/
 						}
 					});
 
 		            convertView.setTag(holder);
+		            //holder.btnAgregar.setTag(adapter.getItem(position));
 			} else {
 				holder = (Holder) convertView.getTag();
+				//holder.btnAgregar.setTag(adapter.getItem(position));
 			}
 			Pedido item = (Pedido) adapter.getItem(position);
 			
@@ -208,6 +268,8 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 	@Override
 	public void onClick(View v) {
 		Intent intent = new Intent((this),GridViewCategorias.class);
+		//if(listaPedidosTomados.size() != 0)
+		//intent.putExtra("menusTomados", listaPedidosTomados);
 		if (isIntentAvailable(intent)) {
 			startActivity(intent);
 		}

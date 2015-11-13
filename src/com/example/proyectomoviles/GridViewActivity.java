@@ -44,6 +44,8 @@ OnItemClickListener{
 	private Menu menuToShow;
 	private Intent IntentMenu;
 	static GridViewActivity activityMenu;
+	
+	//private ArrayList<Pedido> listaPedidosTomadosDesdeCarta;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -51,6 +53,9 @@ OnItemClickListener{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.listamenus);
 		db = new DataBaseHelper(this);
+		
+		
+		
 		adapter = new MenuAdapter();
 		activityMenu=this;
 		setListAdapter(adapter);
@@ -144,7 +149,21 @@ OnItemClickListener{
 						if(IntentMenu != null)
 						{
 							IntentMenu.putExtra("menu",menuSeleccionado);
-							
+							/*
+							listaPedidosTomadosDesdeCarta = (ArrayList<Pedido>) getIntent().getSerializableExtra("menusTomadosDesdeCategoria");
+							Pedido p = new Pedido();
+							p.setId(menuSeleccionado.getIdMenu());
+							p.setCantidad(1);
+							p.setEstado("Tomado");
+							p.setPrecio(menuSeleccionado.getPrecioMenu());
+							p.setNombre(menuSeleccionado.getNombreMenu());
+							if(listaPedidosTomadosDesdeCarta == null)
+							{
+								listaPedidosTomadosDesdeCarta = new ArrayList<Pedido>();
+								listaPedidosTomadosDesdeCarta.add(p);
+							}
+							//aca esta el error cuando intento iniciar la actividad con este putextra 
+							//IntentMenu.putExtra("menus", listaPedidosTomadosDesdeCarta);*/
 							startActivity(IntentMenu);
 							GridViewCategorias.getInstance().finish();
 							GridViewActivity.getInstance().finish();

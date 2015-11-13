@@ -28,6 +28,8 @@ OnItemClickListener{
     private ArrayList<GridItem> mGridData1;
     static GridViewCategorias activityCategorias;
     
+  //  private ArrayList<Pedido> listaPedidosTomados;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
@@ -35,6 +37,9 @@ OnItemClickListener{
 
         mGridView = (GridView) findViewById(R.id.gvCategorias);
         
+       // listaPedidosTomados = (ArrayList<Pedido>)getIntent().getSerializableExtra("menusTomados");
+        
+        	
         //Initialize with empty data
         mGridData1 = new ArrayList<GridItem>();
         adapter = new CategoryAdapter();
@@ -154,7 +159,8 @@ private void loadCategoryData() {
 		if(intent != null)
 		{
 			intent.putExtra("categoria",idCategoria);
-			
+			//if(listaPedidosTomados != null)
+			//	intent.putExtra("menusTomadosDesdeCategoria", listaPedidosTomados);
 			startActivity(intent);
 		}	
 		
