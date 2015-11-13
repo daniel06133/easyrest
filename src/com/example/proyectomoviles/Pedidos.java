@@ -15,15 +15,12 @@ import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -39,19 +36,16 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
     private DataBaseHelper db;
     private ImageButton btnAgregarPedido;
     private ImageButton btnRegistrarPedido;
-    private ArrayList<Pedido> listaPedidosTomados;
     private boolean isBack;
-    //private ArrayList<Pedido> listaPedidosTomadosDesdeCarta;
+    private Pedidos actividadPedidos;
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
     	isBack = false;
+    	actividadPedidos = this;
         setContentView(R.layout.pedidos);
         db = new DataBaseHelper(this);     
-        listaPedidosTomados = new ArrayList<Pedido>();
-        
-        //TextView txtTotal = (TextView) findViewById(R.id.txtTotal);
-        
+                
         LinearLayout linearMesas = (LinearLayout) findViewById(R.id.linearLPedidos);
         linearMesas.setBackgroundColor(Color.LTGRAY);
         
@@ -65,17 +59,7 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
        
         adapter = new PedidoAdapter();
         cargarPedidosPorMesa((getIntent().getIntExtra("mesa",0) + 1));
-        /*
-        listaPedidosTomadosDesdeCarta = (ArrayList<Pedido>)getIntent().getSerializableExtra("menus");
-        if(listaPedidosTomadosDesdeCarta != null){
-	        if(listaPedidosTomados.size() != listaPedidosTomadosDesdeCarta.size())
-	        {
-	        	Pedido p = listaPedidosTomadosDesdeCarta.get(listaPedidosTomadosDesdeCarta.size()-1);
-	        	adapter.addPedido(p);
-	        	listaPedidosTomados.add(p);
-	        }
-        }*/
-        
+     
         Menu menu = (Menu) getIntent().getSerializableExtra("menu");
         
         if (menu != null) {
@@ -108,8 +92,7 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 		        p.setNombre(cs.getString(1));
 		        p.setCantidad(cs.getInt(2));
 		        p.setPrecio("$" + (cs.getInt(3) * p.getCantidad()));
-		        p.setEstado("Registrado");
-		        
+		        p.setEstado("Registrado"); 
 		        adapter.addPedido(p);   
 		    }		    
 		}
@@ -120,7 +103,6 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View convertView, int position, long arg3) {
 	
-		 
 	}
 	
 	
@@ -129,10 +111,15 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 		Pedido item = (Pedido) adapter.getItem(position);
 		if(!item.getEstado().equals("Registrado"))
 		{
-				//listaPedidosTomados.remove((position -(adapter.getCount()-listaPedidosTomados.size())));
 				adapter.remove(position);
 				getListView().invalidateViews();
 				loadPedidos();				
+		}
+		else
+		{
+			Toast toast = Toast.makeText(this, "No es posible eliminar un pedido registrado.",
+					Toast.LENGTH_SHORT);
+			toast.show();
 		}
 		return true;
 	}
@@ -152,7 +139,6 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 	class PedidoAdapter extends BaseAdapter {
 		private ArrayList<Pedido> listaPedidos;
 		private LayoutInflater inflater;
-		private Context contexto;
 
 		public PedidoAdapter() {
 			listaPedidos = new ArrayList<Pedido>();
@@ -168,7 +154,6 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 		public PedidoAdapter(Context c)
 		{
 			inflater = LayoutInflater.from(c);
-			contexto = c;
 		}
  
 		
@@ -251,15 +236,13 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 						        holder.txtCantidadPedido.setText(""+ item.getCantidad());
 								holder.txtPrecioPedido.setText(""+item.getPrecio());
 								loadPedidos();}
-								//aca creo que estaria pudiendo setear el texto nuevo de cantidad y precio 
-								//de la fila que le clickio el signo mas. Pero no estariamos 
-								//actualizando ese item del adapter..lo cual luego nos traeria inconsistencias
-							/*}
-							else
-							{
-								//mostrar toast o algo que avise que no se puede porque ya esta registrado
-								//en cocina
-							}*/
+							    else
+							    {
+							    	Toast toast = Toast.makeText(actividadPedidos, "No es posible añadir una unidad a un pedido registrado.",
+											Toast.LENGTH_SHORT);
+									toast.show();
+							    }
+								
 						}
 					});
 
