@@ -30,6 +30,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -122,6 +123,7 @@ OnItemClickListener{
 			private TextView txtPrecio;
 			private ImageView imagenChicaMenu;
 			private Button btnAgregarMenu;
+			private ImageButton imgButtonAgregar;
 
 		}
 
@@ -139,7 +141,10 @@ OnItemClickListener{
 						.findViewById(R.id.txtPrecio);
 				holder.btnAgregarMenu = (Button) convertView.
 						findViewById(R.id.btnAgregarMenu);
-				holder.btnAgregarMenu.setOnClickListener(new View.OnClickListener() {
+				holder.imgButtonAgregar= (ImageButton) convertView.
+						findViewById(R.id.imgButtonAgregar);
+
+				holder.imgButtonAgregar.setOnClickListener(new View.OnClickListener() {
 					@Override
 					public void onClick(View v) {
 						
