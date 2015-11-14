@@ -3,34 +3,63 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#314550"
     android:id="@+id/linearLMesas" >
-					
-					<TextView
-		            android:id="@+id/txtSuperiorMesas"
-		            android:layout_width="match_parent"
-		            android:layout_height="wrap_content"
-		            android:gravity ="center"
-		            android:background="#5173DA"
-		            android:text="@string/tituloMesas" 
-		            android:textSize="50sp"
-			        android:textStyle="bold"
-		            android:textColor="#FFFFFF"/>
-				
-	         
+
+			<LinearLayout
+			    android:id="@+id/linearLTitulo"
+			    android:layout_width="fill_parent"
+			    android:layout_height="80dp"
+			    android:background="#476B85"
+			    android:orientation="horizontal" >
+
+			    <ImageButton
+			        android:id="@+id/btnLogo"
+			        android:layout_width="75dp"
+			        android:layout_height="match_parent"
+			        android:layout_gravity="center_vertical"
+			        android:layout_marginLeft="25dp"
+			        android:background="#476B85"
+			        android:gravity="left"
+			        android:scaleType="fitXY"
+			        android:src="@drawable/logo" />
+			    
+			        <!--  android:layout_weight="1.41" -->
+
+			    <TextView
+			        android:id="@+id/txtSuperiorMesas"
+			        android:layout_width="match_parent"
+			        android:layout_height="match_parent"
+			        android:layout_gravity="center_horizontal|center_vertical"			       
+			        android:background="#476B85"
+			        android:gravity="center"
+			        android:text="@string/tituloMesas"
+			        android:textColor="#FFFFFF"
+			        android:textSize="50sp"
+			        android:textStyle="bold" />
+			    <!--  android:layout_weight="6.35" -->
+			</LinearLayout>
+	         <LinearLayout
+			    android:id="@+id/linearGrilla"
+			    android:layout_width="fill_parent"
+			    android:layout_height="fill_parent"
+			    android:background="#314550"
+			    android:orientation="vertical" >
 			    <GridView
 			        android:id="@+id/mesas"
 			        android:layout_width="match_parent"
 			        android:layout_height="match_parent"
-			        android:columnWidth="100dp"
+			        android:columnWidth="160dp"
 			        android:gravity="center"
 			        android:horizontalSpacing="0dp"
 			        android:numColumns="auto_fit"
 			        android:stretchMode="columnWidth"
 			        android:verticalSpacing="0dp"
-			        android:layout_marginLeft="100dp"
-			        android:layout_marginRight="100dp"
-			        android:layout_marginTop="100dp"
-			        android:layout_marginBottom="100dp">
+			        android:layout_marginLeft="50dp"
+			        android:layout_marginRight="50dp"
+			        android:layout_marginTop="50dp"
+			        android:layout_marginBottom="50dp"
+			        android:background="#314550">
 			    </GridView>  
-			   
+			   </LinearLayout>
 </LinearLayout>

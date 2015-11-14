@@ -2,14 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="fill_parent"
 	android:layout_height="fill_parent"
-	android:descendantFocusability="blocksDescendants">
+	android:descendantFocusability="blocksDescendants"
+	android:background="#314550">
     
     <ImageView 
         android:layout_width="100dp" 
         android:id="@+id/imagenChicaMenu"
 	    android:layout_margin="5dp" 
 	    android:layout_height="100dp" 
-	    android:layout_weight="0"/>
+	    android:layout_weight="0"
+	    android:background="#314550"/>
     
 	<TextView 
 	    android:layout_width="fill_parent" 
@@ -17,7 +19,9 @@
 		android:layout_gravity="center_vertical|left" 
 		android:layout_height="wrap_content"
 		android:textSize="30dp" 
-		android:layout_weight="1"/>
+		android:layout_weight="1"
+		android:textColor="#FFFFFF"
+		android:background="#314550"/>
 	
 	<TextView 
 	    android:layout_width="wrap_content" 
@@ -25,9 +29,9 @@
 		android:layout_gravity="center_vertical|right" 
 		android:layout_height="wrap_content" 
 		android:textSize="30dp" 
-		android:layout_weight="0" />
-	
-
+		android:layout_weight="0" 
+		android:textColor="#FFFFFF"
+		android:background="#314550"/>
 
 	<ImageButton
 	    android:id="@+id/imgButtonAgregar"
@@ -37,6 +41,7 @@
 	    android:gravity="center"
 	    android:layout_gravity="center_vertical"
 	    android:layout_marginLeft="30dp"
-	    android:src="@drawable/add_button" />
+	    android:src="@drawable/add_button" 
+	    android:background="#314550"/>
 
 </LinearLayout>

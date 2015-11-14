@@ -2,14 +2,54 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-    <TextView android:layout_width="fill_parent"
-		android:layout_height="wrap_content" android:text="Categoria" 
-		android:textStyle="bold" android:textSize="35dp" android:layout_gravity="center_horizontal|center_vertical"/>
-    <ListView android:layout_height="fill_parent" android:id="@android:id/list"
-		android:layout_width="fill_parent"></ListView>
-	<TextView android:id="@android:id/empty" android:layout_width="fill_parent"
-		android:layout_height="wrap_content" android:background="#FF0000"
-		android:text="No hay Menús en la Categoría seleccionada" />
+    android:orientation="vertical"
+    android:background="#314550">
+     <LinearLayout
+		    android:orientation="horizontal" 
+		    android:background="#476B85"
+		    android:id="@+id/linearLTitulo"
+		    android:layout_width="fill_parent"
+		    android:layout_height="80dp" >
 
+	        <ImageButton
+	            android:id="@+id/btnLogo"
+	            android:layout_width="75dp"
+	            android:layout_height="match_parent"
+	            android:layout_marginLeft="5dp"
+	            android:layout_marginRight="10dp"
+	            android:background="#476B85"
+	            android:gravity="left"
+	            android:scaleType="fitXY"
+	            android:src="@drawable/logo" />
+		    <TextView 
+		        android:layout_width="fill_parent"
+				android:layout_height="wrap_content" 
+				android:text="Categoría" 
+				android:textStyle="bold" 
+				android:textSize="35dp" 
+				android:textColor="#FFFFFF"
+				android:layout_gravity="center_horizontal|center_vertical"/>
+	</LinearLayout>	
+    <LinearLayout
+	    android:orientation="vertical" 
+	    android:background="#314550"					    
+	    android:id="@+id/linearContenido"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent" >
+     
+		     <ListView 
+		        android:background="#314550"
+		        android:layout_height="fill_parent" 
+		        android:id="@android:id/list"
+				android:layout_width="fill_parent"
+				android:divider="#476B85"
+   			    android:dividerHeight="3px">        
+		    </ListView>
+			
+			<TextView android:id="@android:id/empty" 
+			    android:layout_width="fill_parent"
+				android:layout_height="wrap_content" 
+				android:textColor="#FFFFFF"
+				android:text="No hay menús de la categoría seleccionada." />
+	</LinearLayout>		
 </LinearLayout>

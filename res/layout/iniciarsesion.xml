@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" 
-    android:background="#5173DA"
+    android:orientation="vertical"     
+    android:background="#314550"
     >
 <LinearLayout
     android:layout_width="fill_parent"
@@ -19,7 +19,7 @@
         android:layout_height="500dp"
         android:layout_gravity="center_horizontal|center_vertical"
         android:gravity="center"
-        android:background="#5173DA"
+        android:background="#314550"
         android:layout_margin="35dp"
         android:src="@drawable/logo" 
         />
@@ -37,12 +37,12 @@
         android:layout_width="400dp"
         android:layout_height="50dp"
         android:ems="10"    
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         android:textStyle="bold"
         android:textSize="25sp"
         android:layout_margin="25dp"
         android:layout_marginTop="40dp"
-        android:background="#E5E5E5"
+        android:background="#476B85"
         android:layout_gravity="center_horizontal|center_vertical"
         android:hint="Ingrese su Usuario">
         
@@ -55,11 +55,11 @@
         android:ems="10"
         android:inputType="textPassword"
         android:layout_gravity="center_horizontal|center_vertical"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         android:textStyle="bold"
         android:textSize="25sp"
         android:layout_margin="25dp"
-        android:background="#E5E5E5"
+        android:background="#476B85"
         android:hint="Ingrese su Contraseña" >
         </EditText>
 
@@ -69,6 +69,7 @@
         android:layout_height="75dp"
         android:textSize="25sp"
         android:text="Iniciar sesión" 
+        android:textColor="#FFFFFF"
         android:layout_gravity="center_horizontal|center_vertical"
         android:gravity="center"
         android:textStyle="bold"

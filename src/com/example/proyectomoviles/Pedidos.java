@@ -89,7 +89,7 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 			p = (Pedido)adapter.getItem(i);
 			total += Integer.parseInt(p.getPrecio().substring(1));
 		}
-		txtTotal.setText("Total: $"+total);
+		txtTotal.setText("TOTAL: $"+total);
 	}
 	private void cargarPedidosPorMesa(int idMesa)
 	{
