@@ -38,11 +38,12 @@ OnItemClickListener {
         
         LinearLayout linearMesas = (LinearLayout) findViewById(R.id.linearLMesas);
         linearMesas.setBackgroundColor(Color.LTGRAY);
-        
+        /*
         TextView txtTitulo = (TextView) findViewById(R.id.txtSuperiorMesas);
         txtTitulo.setBackgroundColor(Color.parseColor("#5173DA"));
         txtTitulo.setTextColor(Color.parseColor("#FFFFFF"));
         txtTitulo.setTextSize(30);
+        */
         mGridView.setBackgroundColor(Color.LTGRAY);
         
         //Initialize with empty data
@@ -81,26 +82,31 @@ OnItemClickListener {
 
 		public MesaAdapter() {
 			mGridData = mGridMesas;
-			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa1_zpschpfmpuv.png"));
-			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa1_zpschpfmpuv.png"));
-			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa1_zpschpfmpuv.png"));
-			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa1_zpschpfmpuv.png"));
-			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa1_zpschpfmpuv.png"));
-			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa1_zpschpfmpuv.png"));
-			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa1_zpschpfmpuv.png"));
-			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa1_zpschpfmpuv.png"));
-			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa1_zpschpfmpuv.png"));
-			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa1_zpschpfmpuv.png"));
-			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa1_zpschpfmpuv.png"));
-			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa1_zpschpfmpuv.png"));
-			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa1_zpschpfmpuv.png"));
-			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa1_zpschpfmpuv.png"));
-			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa1_zpschpfmpuv.png"));
-			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa1_zpschpfmpuv.png"));
-			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa1_zpschpfmpuv.png"));
-			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa1_zpschpfmpuv.png"));
-			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa1_zpschpfmpuv.png"));
-			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa1_zpschpfmpuv.png"));
+			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa11_zpshhecjwkf.png"));
+			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa12_zpse2cyfhnc.png"));
+			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa13_zpsuezeprmm.png"));
+			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa14_zpswuxcdhey.png"));
+			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa15_zpsowsdqqk3.png"));
+			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa16_zpsv87cznnd.png"));
+			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa17_zpsk42kkeoi.png"));
+			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa18_zpsdbkjuuqu.png"));
+			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa19_zpsvxdagkkk.png"));
+			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa110_zpsmewynfgv.png"));
+			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa111_zpsxiqh2b14.png"));
+			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa112_zpsu5c2w5ds.png"));
+			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa113_zpsvlsgtc1o.png"));
+			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa114_zps0n0wihdv.png"));
+			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa115_zpserldeprj.png"));
+			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa116_zpsp0cezinx.png"));
+			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa117_zpsdeejzbrr.png"));
+			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa118_zpsaimfwjpe.png"));
+			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa119_zpsktanrzla.png"));
+			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa120_zpscfmmbwda.png"));
+			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa121_zpsplurldol.png"));
+			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa122_zpsmk0nogzs.png"));
+			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa123_zps9pnxdpq4.png"));
+			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa124_zpsmwnx07rz.png"));
+			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa125_zps1pkix2mr.png"));
 			
 			inflater = LayoutInflater.from(Mesas.this);
 		}

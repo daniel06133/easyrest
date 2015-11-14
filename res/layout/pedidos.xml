@@ -11,25 +11,28 @@
 					    android:orientation="horizontal" 
 					    android:background="#5173DA"
 					    android:id="@+id/linearLTitulo" >
-					    			<TextView
+					   			<TextView
 						            android:id="@+id/txtNroMesa"
 						            android:layout_width="match_parent"
 						            android:layout_height="match_parent"
-						            android:layout_weight="0.6"
+						            android:layout_gravity="center_horizontal|center_vertical"
 						            android:gravity ="left"
+						            android:layout_weight="0.25"        
 						            android:background="#5173DA"
 						            android:textColor="#FFFFFF"
-						            android:textSize="40sp"
+						            android:textSize="50sp"
 						            android:textStyle="bold"
+						            android:layout_marginTop="30dp"
 						            android:text="Mesa " 
 						            android:layout_marginLeft="25dp"/>
 							   		 <ImageButton
 							        android:id="@+id/btnRegistrarPedido"
-							        android:layout_width="150dp"
-							        android:layout_height="wrap_content"
-							        android:layout_weight="0.4"							    
+							        android:layout_width="match_parent"
+							        android:layout_height="match_parent"
+							     	android:gravity ="right"
+							     	android:layout_weight="0.75"					    
 							        android:background="#5173DA"
-							        android:src="@drawable/icono_ok"
+							        android:src="@drawable/chef1"
 							        android:layout_marginRight="25dp" />
 									
 									
@@ -44,7 +47,7 @@
 					    android:layout_marginLeft="25dp"
 					    android:layout_marginRight="25dp"
 					    android:layout_marginTop="25dp"
-					    android:layout_marginBottom="25dp" 
+					    android:layout_marginBottom="0dp" 
 					    android:background="#A5BAE1"
 					    android:bottomRightRadius="100dp"
 						android:bottomLeftRadius="100dp"
@@ -53,17 +56,35 @@
 						android:divider="#000000"
    						android:dividerHeight="1.5px">
 					</ListView>
+					
+					<TextView 
+					    android:id="@+id/txtTotal"
+			            android:layout_width="match_parent"
+			            android:layout_height="wrap_content"
+			            android:layout_weight="0.05"
+			            android:layout_marginLeft="25dp"
+					    android:layout_marginRight="25dp"
+					    android:layout_marginTop="0dp"
+					    android:layout_marginBottom="25dp" 
+			            android:gravity ="right"
+			            android:background="#5173DA"
+			            android:textColor="#000000"
+				        android:textSize="30sp"
+				        android:textStyle="bold"
+				        android:includeFontPadding="false"
+			            android:text="Total:$"/>
 
 					<ImageButton
 					    android:id="@+id/btnAgregarMenu"
 					    android:layout_width="wrap_content"
 					    android:layout_height="wrap_content"
 					    android:gravity="right"
+					    android:layout_gravity="right"
 					    android:layout_marginLeft="25dp"
 					    android:layout_marginRight="25dp"
 					    android:layout_marginTop="25dp"
 					    android:layout_marginBottom="25dp" 
-					    android:src="@android:drawable/btn_plus" />
+					    android:src="@drawable/add_button" />
 					
 					<TextView
 		            android:id="@+id/txtMensajeSinPedidos"

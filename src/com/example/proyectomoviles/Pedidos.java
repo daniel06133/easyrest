@@ -38,6 +38,7 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
     private ImageButton btnRegistrarPedido;
     private boolean isBack;
     private Pedidos actividadPedidos;
+    private TextView txtTotal;
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
@@ -51,11 +52,12 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
         
         TextView txtTitulo = (TextView) findViewById(R.id.txtNroMesa);
         txtTitulo.setText("Mesa "+ (getIntent().getIntExtra("mesa",0) + 1));   
-        
         btnAgregarPedido = (ImageButton) findViewById(R.id.btnAgregarMenu);
         btnAgregarPedido.setOnClickListener(this);
         btnRegistrarPedido = (ImageButton) findViewById(R.id.btnRegistrarPedido);
         btnRegistrarPedido.setOnClickListener(this);
+        txtTotal = (TextView) findViewById(R.id.txtTotal);
+        
        
         adapter = new PedidoAdapter();
         cargarPedidosPorMesa((getIntent().getIntExtra("mesa",0) + 1));
@@ -71,13 +73,24 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
         	p.setPrecio("$"+menu.getPrecioMenu());
         	adapter.addPedido(p);
 		}     
-                
+        actualizarTotal();
         setListAdapter(adapter);
         getListView().setOnItemClickListener(this);
         getListView().setOnItemLongClickListener(this);
         loadPedidos();
     }
 	
+	private void actualizarTotal()
+	{
+		int total = 0;
+		Pedido p;
+		for(int i=0;i<=adapter.getCount()-1;i++)
+		{
+			p = (Pedido)adapter.getItem(i);
+			total += Integer.parseInt(p.getPrecio().substring(1));
+		}
+		txtTotal.setText("Total: $"+total);
+	}
 	private void cargarPedidosPorMesa(int idMesa)
 	{
 		Pedido p;
@@ -110,7 +123,10 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 		Pedido item = (Pedido) adapter.getItem(position);
 		if(!item.getEstado().equals("Registrado"))
 		{
-				adapter.remove(position);
+			    int nuevoTotal;
+			    nuevoTotal = Integer.parseInt(txtTotal.getText().toString().substring(8))-Integer.parseInt(item.getPrecio().substring(1));
+			    txtTotal.setText("Total: $" + nuevoTotal);
+			    adapter.remove(position);
 				getListView().invalidateViews();
 				loadPedidos();				
 		}
@@ -229,7 +245,10 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 						        int precio = Integer.parseInt(item.getPrecio().substring(1));
 						        item.setPrecio("$"+( precio + (precio / (item.getCantidad()))));
 						        item.setCantidad((item.getCantidad()+1));				        
-						        
+						       
+						        int nuevoTotal;
+						        nuevoTotal = Integer.parseInt(txtTotal.getText().toString().substring(8)) + (precio/(item.getCantidad()-1));
+						        txtTotal.setText("Total: $" + nuevoTotal);
 						        
 						        
 						        holder.txtCantidadPedido.setText(""+ item.getCantidad());
@@ -306,6 +325,7 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 			Pedido p = (Pedido)data.getSerializableExtra("pedidoTomado");
 			adapter.addPedido(p);
 		    loadPedidos();
+		    actualizarTotal();
 		}
 	}
 	
