@@ -98,8 +98,8 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 	{
 		Pedido p;		
 		Cursor cs = db.obtenerMenusConIdMesa(idMesa);
-		
-		if (cs.getCount() != -1) 
+		int cantFilas = cs.getCount();
+		if (cs != null & cantFilas > 0 ) 
 		{
 			//txtEmpty.setText("");
 			while(cs.moveToNext()) 
@@ -113,7 +113,7 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 		        adapter.addPedido(p);   
 		    }		    
 		}
-		if (cs.getCount() == -1)
+		if (cantFilas ==0)
 		{
 			txtEmpty.setText("No hay pedidos registrados aún");
 		}
