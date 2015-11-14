@@ -81,8 +81,9 @@ OnItemClickListener{
 		        adapter.addMenu(menu);
 		        
 		    }
-		    cs.close();
+		    
 		}
+		cs.close();
 		
 		adapter.notifyDataSetChanged();
 

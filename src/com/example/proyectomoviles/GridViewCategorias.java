@@ -127,7 +127,7 @@ private void loadCategoryData() {
 		Integer idCategoria =0;
 		String nombreCategoria = categoriaSeleccionada.getTitle();
 		
-		if (nombreCategoria == "Entrada"){
+		if (nombreCategoria == "Entradas"){
 			idCategoria=1;
 		}
 		else if (nombreCategoria == "Tablas") {

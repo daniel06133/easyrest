@@ -72,12 +72,12 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 		
 		
 		insertarUsuario(db);
+		insertarMenusEntradas(db);
+		insertarMenusPizzas(db);
 		insertarMenusBebidas(db);
 		insertarMenusPastas(db);
 		insertarMenusTablas(db);
 		insertarMenusPostres(db);
-		insertarMenusPizzas(db);
-		insertarMenusEntradas(db);
 		insertarMenusCarnes(db);
 		insertarMenusSandwiches(db);
 		insertarMenuXMesa(db);
@@ -227,6 +227,7 @@ void insertarMenusTablas(SQLiteDatabase db) {
 	cv.put(colDescripcionMenu, "Tabla con jamon, queso de campo, queso roquefort, salame, bondiola, jamon crudo y aceitunas.");
 	cv.put(colPrecioMenu, 180);
 	cv.put(colIdCategoriaMenu, 2);
+	db.insert(menuTable, colIdMenu, cv);
 
 	cv.put(colNombreMenu, "TABLA FIAMBRES PARA 4");
 	cv.put(colUrlFotoLowQMenu,"http://i1379.photobucket.com/albums/ah133/daniel0613/Tablas_Fiabres_4P_HD_BAJA_zpsvc2q2w9a.jpg");
@@ -234,6 +235,7 @@ void insertarMenusTablas(SQLiteDatabase db) {
 	cv.put(colDescripcionMenu, "Tabla con jamon, queso de campo, queso roquefort, salame, bondiola, jamon crudo y aceitunas.");
 	cv.put(colPrecioMenu, 280);
 	cv.put(colIdCategoriaMenu, 2);
+	db.insert(menuTable, colIdMenu, cv);
 
 	cv.put(colNombreMenu, "TABLA CORDOBEZA PARA 2");
 	cv.put(colUrlFotoLowQMenu,"http://i1379.photobucket.com/albums/ah133/daniel0613/Tablas_Fritas_Carnes_HD_BAJA_zpsjq0xazel.jpg");
@@ -241,6 +243,7 @@ void insertarMenusTablas(SQLiteDatabase db) {
 	cv.put(colDescripcionMenu, "Tabla con papas fritas, y carne picada con salsa criolla y salsa chedar.");
 	cv.put(colPrecioMenu, 210);
 	cv.put(colIdCategoriaMenu, 2);
+	db.insert(menuTable, colIdMenu, cv);
 
 	cv.put(colNombreMenu, "TABLA RUSTICA PARA 6 PERSONAS");
 	cv.put(colUrlFotoLowQMenu,"http://i1379.photobucket.com/albums/ah133/daniel0613/Tablas_Rustica_HD_BAJA_zps0lssszwj.jpg");
@@ -248,6 +251,7 @@ void insertarMenusTablas(SQLiteDatabase db) {
 	cv.put(colDescripcionMenu, "Tabla con huevo duro, jamon crudo, queso roquefort, queso chedar, queso dambo, pollo frito, chorizos, papas fritas, bondiola, pizza y hamburguesas fritas con mayonesa casera.");
 	cv.put(colPrecioMenu, 450);
 	cv.put(colIdCategoriaMenu, 2);
+	db.insert(menuTable, colIdMenu, cv);
 
 }
 
@@ -270,6 +274,7 @@ void insertarMenusSandwiches(SQLiteDatabase db) {
 	cv.put(colDescripcionMenu, "Lomito con queso, tomate, lechuga, huevo y carne de lomo. Con papas fritas.");
 	cv.put(colPrecioMenu, 115);
 	cv.put(colIdCategoriaMenu, 3);
+	db.insert(menuTable, colIdMenu, cv);
 	
 	cv.put(colNombreMenu, "SANDWICH DE MILANESA");
 	cv.put(colUrlFotoLowQMenu,"http://i1379.photobucket.com/albums/ah133/daniel0613/Sandwich_Milanesa_HD_BAJA_zps4lb3sshi.jpg");
@@ -277,6 +282,7 @@ void insertarMenusSandwiches(SQLiteDatabase db) {
 	cv.put(colDescripcionMenu, "Sandwich con milanesa de carne o pollo, pan de lomo, tomate, lechuga y huevo.");
 	cv.put(colPrecioMenu, 105);
 	cv.put(colIdCategoriaMenu, 3);
+	db.insert(menuTable, colIdMenu, cv);
 	
 	cv.put(colNombreMenu, "SANDWICH DE PAN FRANCES");
 	cv.put(colUrlFotoLowQMenu,"http://i1379.photobucket.com/albums/ah133/daniel0613/Sandwich_Pan_Frances_HD_BAJA_zpsigpq3cfo.jpg");
@@ -284,6 +290,7 @@ void insertarMenusSandwiches(SQLiteDatabase db) {
 	cv.put(colDescripcionMenu, "Sandwich con jamon, queso, tomate y lechuga.");
 	cv.put(colPrecioMenu, 85);
 	cv.put(colIdCategoriaMenu, 3);
+	db.insert(menuTable, colIdMenu, cv);
 
 	cv.put(colNombreMenu, "SANDWICH DE PAN DE SALVADO");
 	cv.put(colUrlFotoLowQMenu,"http://i1379.photobucket.com/albums/ah133/daniel0613/Sandwich_Pan_Salvado_HD_BAJA_zps4sw3nrcs.jpg");
@@ -291,6 +298,7 @@ void insertarMenusSandwiches(SQLiteDatabase db) {
 	cv.put(colDescripcionMenu, "Sandwich con jamon, queso, tomate y lechuga.");
 	cv.put(colPrecioMenu, 90);
 	cv.put(colIdCategoriaMenu, 3);
+	db.insert(menuTable, colIdMenu, cv);
 	
 	cv.put(colNombreMenu, "TOSTADO COMPLETO");
 	cv.put(colUrlFotoLowQMenu,"http://i1379.photobucket.com/albums/ah133/daniel0613/Sandwich_Tostado_Completo_HD_BAJA_zpstqtppkro.jpg");
@@ -298,6 +306,7 @@ void insertarMenusSandwiches(SQLiteDatabase db) {
 	cv.put(colDescripcionMenu, "2 Sandwich de miga de jamon, queso, lechuga y tomate tostados.");
 	cv.put(colPrecioMenu, 70);
 	cv.put(colIdCategoriaMenu, 3);
+	db.insert(menuTable, colIdMenu, cv);
 
 
 }
