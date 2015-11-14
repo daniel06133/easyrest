@@ -39,6 +39,8 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
     private boolean isBack;
     private Pedidos actividadPedidos;
     private TextView txtTotal;
+    private TextView txtEmpty;
+    
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
@@ -57,8 +59,8 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
         btnRegistrarPedido = (ImageButton) findViewById(R.id.btnRegistrarPedido);
         btnRegistrarPedido.setOnClickListener(this);
         txtTotal = (TextView) findViewById(R.id.txtTotal);
+        txtEmpty = (TextView) findViewById(R.id.txtEmpty);
         
-       
         adapter = new PedidoAdapter();
         cargarPedidosPorMesa((getIntent().getIntExtra("mesa",0) + 1));
      
@@ -91,14 +93,17 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 		}
 		txtTotal.setText("TOTAL: $"+total);
 	}
+	
 	private void cargarPedidosPorMesa(int idMesa)
 	{
-		Pedido p;
-		
+		Pedido p;		
 		Cursor cs = db.obtenerMenusConIdMesa(idMesa);
 		
-		if (cs != null) {
-		    while(cs.moveToNext()) {
+		if (cs.getCount() != -1) 
+		{
+			//txtEmpty.setText("");
+			while(cs.moveToNext()) 
+			{
 		    	p = new Pedido();
 		        p.setId(cs.getInt(0));
 		        p.setNombre(cs.getString(1));
@@ -107,6 +112,10 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 		        p.setEstado("Registrado"); 
 		        adapter.addPedido(p);   
 		    }		    
+		}
+		if (cs.getCount() == -1)
+		{
+			txtEmpty.setText("No hay pedidos registrados aún");
 		}
 		 cs.close();		   
 	
