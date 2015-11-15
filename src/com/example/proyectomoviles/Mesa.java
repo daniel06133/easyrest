@@ -7,7 +7,7 @@ public class Mesa {
 	    public Mesa() {
 	        super();
 	    }
-	    public Mesa(String urlImagen)
+	   public Mesa(String urlImagen)
 	    {	
 	    	super();
 	    	image = urlImagen;    	
@@ -20,5 +20,4 @@ public class Mesa {
 	    public void setImage(String image) {
 	        this.image = image;
 	    }
-	
 }

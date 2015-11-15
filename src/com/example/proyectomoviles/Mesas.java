@@ -12,21 +12,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 
 
 
-public class Mesas extends Activity implements
-OnItemClickListener {
+public class Mesas extends Activity implements OnItemClickListener,OnItemLongClickListener, android.view.View.OnClickListener {
 
 	private GridView mGridView;
     private MesaAdapter adapter;
     private ArrayList<Mesa> mGridMesas;
-    
+    Mesas mesa;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,17 +38,9 @@ OnItemClickListener {
         setContentView(R.layout.mesas);
 
         mGridView = (GridView) findViewById(R.id.mesas);
-        
+        mesa = this;
         
         LinearLayout linearMesas = (LinearLayout) findViewById(R.id.linearLMesas);
-        linearMesas.setBackgroundColor(Color.LTGRAY);
-        /*
-        TextView txtTitulo = (TextView) findViewById(R.id.txtSuperiorMesas);
-        txtTitulo.setBackgroundColor(Color.parseColor("#5173DA"));
-        txtTitulo.setTextColor(Color.parseColor("#FFFFFF"));
-        txtTitulo.setTextSize(30);
-        */
-        mGridView.setBackgroundColor(Color.LTGRAY);
         
         //Initialize with empty data
         mGridMesas = new ArrayList<Mesa>();
@@ -52,24 +48,20 @@ OnItemClickListener {
         mGridView.setAdapter(adapter);
         mGridView.setOnItemClickListener(this);
         
-        //Start download
         loadCategoryData();
-        
-           
+                   
     }
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-		// TODO Auto-generated method stub
-		Intent intent = new Intent(this,Pedidos.class);
-		
+		/**
+		Intent intent = new Intent(this,Pedidos.class);		
 		Integer numeroDeMesa = arg2;
 		
 		if(intent != null)
 		{
 			intent.putExtra("mesa",numeroDeMesa);
-			
 			startActivity(intent);
-		}
+		}*/
 	}
 	
 	private void loadCategoryData() {
@@ -82,7 +74,12 @@ OnItemClickListener {
 
 		public MesaAdapter() {
 			mGridData = mGridMesas;
-			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa11_zpshhecjwkf.png"));
+		 for (int i = 0; i < 30; i++) 
+		 {
+			 mGridData.add(new Mesa(""));
+		 }		
+		 
+			/**mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa11_zpshhecjwkf.png"));
 			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa12_zpse2cyfhnc.png"));
 			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa13_zpsuezeprmm.png"));
 			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa14_zpswuxcdhey.png"));
@@ -107,7 +104,7 @@ OnItemClickListener {
 			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa123_zps9pnxdpq4.png"));
 			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa124_zpsmwnx07rz.png"));
 			mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa125_zps1pkix2mr.png"));
-			
+			**/
 			inflater = LayoutInflater.from(Mesas.this);
 		}
 
@@ -127,27 +124,55 @@ OnItemClickListener {
 		}
 
 		class Holder {
-			private ImageView imagen;
+			private Button mesa;
 		}
 		
 		@Override
-		public View getView(int position, View convertView, ViewGroup arg2) {
-			Holder holder;
-			if (convertView == null) {
+		public View getView(final int position, View convertView, ViewGroup arg2) {
+			final Holder holder;
+			
+			if (convertView == null) {	
 				holder = new Holder();
-				convertView = inflater.inflate(R.layout.gridviewitem,arg2,false);
-		            holder.imagen = (ImageView) convertView.findViewById(R.id.mesa);
-				convertView.setTag(holder);
+				convertView = inflater.inflate(R.layout.mesa,arg2,false);
+		            holder.mesa = (Button) convertView.findViewById(R.id.mesa);
+		            holder.mesa.setText(""+ (position +1));
+		            holder.mesa.setOnClickListener(new View.OnClickListener() {
+						
+						@Override
+						public void onClick(View v) {
+							
+							Intent intent = new Intent(mesa,Pedidos.class);		
+							Integer numeroDeMesa = position;
+							
+							if(intent != null)
+							{
+								intent.putExtra("mesa",numeroDeMesa);
+								startActivity(intent);
+							}
+								
+						}
+		            
+			});
+            convertView.setTag(holder);
 			} else {
 				holder = (Holder) convertView.getTag();
 			}
 			Mesa item = mGridData.get(position);
-			
 			//setear imagen
-			new AsyncImageLoader(item.getImage(), holder.imagen).execute();
+			//new AsyncImageLoader(item.getImage(), holder.imagen).execute();
 			
-			return convertView;
-		}
+			return convertView; 
+			}	
+	}
 
+	@Override
+	public void onClick(View arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }
