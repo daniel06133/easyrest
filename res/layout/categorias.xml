@@ -56,7 +56,8 @@
           android:columnWidth="300dip"
           android:stretchMode="spacingWidthUniform"
           android:horizontalSpacing="5dip"
-          android:layout_marginLeft="10dp">
+          android:layout_marginLeft="10dp"
+          android:layout_marginTop="10dp">
 
         
     </GridView>

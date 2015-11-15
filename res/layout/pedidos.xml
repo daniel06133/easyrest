@@ -17,7 +17,7 @@
 				            android:id="@+id/btnLogo"
 				            android:layout_width="75dp"
 				            android:layout_height="match_parent"
-				            android:layout_marginLeft="5dp"
+				            android:layout_marginLeft="25dp"
 				            android:layout_marginRight="10dp"
 				            android:background="#476B85"
 				            android:gravity="left"
@@ -46,19 +46,19 @@
 						   		     android:layout_height="72dp"
 						   		     android:layout_gravity="center_vertical"
 						   		     android:layout_marginLeft="10dp"
-						   		     android:layout_marginRight="5dp"
+						   		     android:layout_marginRight="25dp"
 						   		     android:background="#476B85"
 						   		     android:gravity="right"
-						   		     android:scaleType="fitXY"
+						   		     android:scaleType="fitXY"   
 						   		     android:src="@drawable/tick" />
 
 					</LinearLayout>		
-					 <LinearLayout
-					    android:orientation="vertical" 
-					    android:background="#314550"					    
-					    android:id="@+id/linearContenido"
-					    android:layout_width="fill_parent"
-					    android:layout_height="fill_parent" >
+		<LinearLayout
+	    android:orientation="vertical" 
+		android:background="#314550"					    
+		android:id="@+id/linearContenido"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent" >	
 					<ListView
 					    android:id="@android:id/list"
 					    android:background="#314550"
@@ -76,6 +76,8 @@
 						android:divider="#476B85"
    						android:dividerHeight="3px">
 					</ListView>
+		
+					 
 					
 					<TextView
 		            android:id="@+id/txtEmpty"
@@ -107,6 +109,7 @@
 			            android:textColor="#FFFFFF"
 				        android:textSize="35sp"
 				        android:textStyle="bold"
+				        android:paddingRight="30dp"
 				        android:includeFontPadding="false"
 			            android:text="TOTAL: $"/>
 
@@ -118,6 +121,8 @@
 					    android:background="#314550"
 					    android:gravity="right"
 					    android:scaleType="fitXY"
+					    android:layout_marginRight="25dp"
+					    android:layout_marginBottom="10dp"
 					    android:src="@drawable/plusicon" />
 
 					</LinearLayout>		

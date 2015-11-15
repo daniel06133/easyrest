@@ -15,15 +15,20 @@ import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
@@ -61,25 +66,16 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
         txtTotal = (TextView) findViewById(R.id.txtTotal);
         txtEmpty = (TextView) findViewById(R.id.txtEmpty);
         
-        txtEmpty.setText("No hay pedidos registrados aún");
+        txtEmpty.setText("Esta mesa no posee pedidos registrados.");
         adapter = new PedidoAdapter();
         cargarPedidosPorMesa((getIntent().getIntExtra("mesa",0) + 1));
      
-        Menu menu = (Menu) getIntent().getSerializableExtra("menu");
-        
-        if (menu != null) {
-        	Pedido p = new Pedido();
-        	p.setCantidad(1);
-        	p.setEstado("Tomado");
-        	p.setId(menu.getIdMenu());
-        	p.setNombre(menu.getNombreMenu());
-        	p.setPrecio("$"+menu.getPrecioMenu());
-        	adapter.addPedido(p);
-		}     
+          
         actualizarTotal();
         setListAdapter(adapter);
         getListView().setOnItemClickListener(this);
         getListView().setOnItemLongClickListener(this);
+        
         loadPedidos();
     }
 	
@@ -99,9 +95,17 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 	private void actualizarMensajeSinPedidos()
 	{
 		if(adapter.getCount() == 0)
+		{			
+			txtEmpty.setHeight(30);
 			txtEmpty.setVisibility(TextView.VISIBLE);
+			txtTotal.setVisibility(TextView.INVISIBLE);
+		}
 		else
+		{
+			txtEmpty.setHeight(0);
+			txtTotal.setVisibility(TextView.VISIBLE);
 			txtEmpty.setVisibility(TextView.INVISIBLE);
+		}
 	}
 	
 	private void cargarPedidosPorMesa(int idMesa)
@@ -124,14 +128,7 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 		        adapter.addPedido(p);   
 		    }		    
 		}
-		if (countCursor == 0)
-
-		{
-			txtEmpty.setVisibility(TextView.VISIBLE);
-					}
-		else
-			txtEmpty.setVisibility(TextView.INVISIBLE);
-		
+				
 		 cs.close();		   
 	
 	}
@@ -160,6 +157,10 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 		{
 			Toast toast = Toast.makeText(this, "No es posible eliminar un pedido registrado.",
 					Toast.LENGTH_SHORT);
+			ViewGroup vg = (ViewGroup)toast.getView();
+			TextView msg = (TextView) vg.getChildAt(0);
+			msg.setTextSize(25);
+			toast.setGravity(Gravity.CENTER, 0, 0);
 			toast.show();
 		}
 		return true;
@@ -284,6 +285,10 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 							    {
 							    	Toast toast = Toast.makeText(actividadPedidos, "No es posible añadir una unidad a un pedido registrado.",
 											Toast.LENGTH_SHORT);
+							    	ViewGroup vg = (ViewGroup)toast.getView();
+									TextView msg = (TextView) vg.getChildAt(0);
+									msg.setTextSize(25);
+									toast.setGravity(Gravity.CENTER, 0, 0);
 									toast.show();
 							    }
 								
@@ -291,10 +296,8 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 					});
 
 		            convertView.setTag(holder);
-		            //holder.btnAgregar.setTag(adapter.getItem(position));
 			} else {
 				holder = (Holder) convertView.getTag();
-				//holder.btnAgregar.setTag(adapter.getItem(position));
 			}
 			Pedido item = (Pedido) adapter.getItem(position);
 			
@@ -346,7 +349,6 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 		/*** Sólo se ejecuta cuando el activity se llamó con
 		 * startActivityForResult
 		***/	
-		//Bundle b = data.getExtras();
 		if (requestCode == 100  & resultCode == RESULT_OK){
 			Pedido p = (Pedido)data.getSerializableExtra("pedidoTomado");
 			adapter.addPedido(p);
@@ -376,23 +378,37 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 	}
 	private void showDialog () {
 	    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-	    builder.setTitle("Alert");
-	    builder.setMessage("¿Está seguro que desea salir? Se perderán aquellos pedidos no registrados.");
-	    
-	    builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-	        @Override
-	        public void onClick(DialogInterface dialog, int which) {
-	            finish();
-	        }
-	    });
-
-	    builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+		AlertDialog dialog = builder.create();
+		
+		
+		dialog.setTitle("Alerta");
+		
+		final ScrollView s_view = new ScrollView(getApplicationContext());
+		final TextView t_view = new TextView(getApplicationContext());
+		t_view.setText("¿Está seguro que desea salir? Se perderán aquellos pedidos no registrados.");
+		t_view.setTextSize(25);     
+		t_view.setPadding(20, 15, 15, 15);
+		s_view.addView(t_view);
+		dialog.setView(s_view);
+		
+		dialog.setButton(AlertDialog.BUTTON_NEGATIVE,"Cancelar",new DialogInterface.OnClickListener() {
 	        @Override
 	        public void onClick(DialogInterface dialog, int which) {
 	            isBack = false;
 	        }
 	    });
-	    builder.show();
+		
+		dialog.setButton(AlertDialog.BUTTON_POSITIVE,"Aceptar", new DialogInterface.OnClickListener() {
+	        @Override
+	        public void onClick(DialogInterface dialog, int which) {
+	            finish();
+	        }
+	    });
+	    
+		
+	    dialog.show();
+	    dialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextSize(25);
+	    dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextSize(25);
 	}
 	
 
