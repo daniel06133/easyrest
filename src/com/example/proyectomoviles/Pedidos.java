@@ -61,6 +61,7 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
         txtTotal = (TextView) findViewById(R.id.txtTotal);
         txtEmpty = (TextView) findViewById(R.id.txtEmpty);
         
+        txtEmpty.setText("No hay pedidos registrados aún");
         adapter = new PedidoAdapter();
         cargarPedidosPorMesa((getIntent().getIntExtra("mesa",0) + 1));
      
@@ -92,6 +93,15 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 			total += Integer.parseInt(p.getPrecio().substring(1));
 		}
 		txtTotal.setText("TOTAL: $"+total);
+		actualizarMensajeSinPedidos();
+	}
+	
+	private void actualizarMensajeSinPedidos()
+	{
+		if(adapter.getCount() == 0)
+			txtEmpty.setVisibility(TextView.VISIBLE);
+		else
+			txtEmpty.setVisibility(TextView.INVISIBLE);
 	}
 	
 	private void cargarPedidosPorMesa(int idMesa)
@@ -117,8 +127,11 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 		if (countCursor == 0)
 
 		{
-			txtEmpty.setText("No hay pedidos registrados aún");
-		}
+			txtEmpty.setVisibility(TextView.VISIBLE);
+					}
+		else
+			txtEmpty.setVisibility(TextView.INVISIBLE);
+		
 		 cs.close();		   
 	
 	}
@@ -139,7 +152,9 @@ public class Pedidos extends ListActivity implements OnItemClickListener,OnItemL
 			    txtTotal.setText("Total: $" + nuevoTotal);
 			    adapter.remove(position);
 				getListView().invalidateViews();
-				loadPedidos();				
+				loadPedidos();		
+			    actualizarMensajeSinPedidos();
+					
 		}
 		else
 		{

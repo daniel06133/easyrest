@@ -86,6 +86,10 @@
 		            android:background="#476B85"
 			        android:textColor="#FFFFFF"
 				    android:textSize="35sp"
+				    android:layout_marginLeft="25dp"
+					android:layout_marginRight="25dp"
+					android:layout_marginTop="0dp"
+					android:layout_marginBottom="0dp" 
 				    android:textStyle="bold"
 		            android:text=""/>	
 					
