@@ -7,6 +7,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import com.example.proyectomoviles.GridViewAdapter.ImageLoadTask;
+import com.example.proyectomoviles.R.id;
 import com.example.proyectomoviles.basededatos.DataBaseHelper;
 
 
@@ -49,13 +50,15 @@ OnItemClickListener{
 	private Intent IntentMenu;
 	private Intent intent2;
 	static GridViewActivity activityMenu;
-	
+	private TextView tituloCategoria;
 
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.listamenus);
+		tituloCategoria = (TextView)findViewById(id.txtTituloCategoria);
+		
 		db = new DataBaseHelper(this);	
 		adapter = new MenuAdapter();
 		activityMenu=this;
@@ -66,8 +69,35 @@ OnItemClickListener{
 
 	private void loadMenuData() {
 		Menu menu;
-				
-		Cursor cs = db.obtenerMenusConIdCategoria(getIntent().getIntExtra("categoria", 1));
+		String categoria="Categoría";
+	   int categoriaSelec = getIntent().getIntExtra("categoria", 1);
+	   if (categoriaSelec == 1){
+			categoria="ENTRADAS";
+		}
+		else if (categoriaSelec == 2) {
+			categoria="TABLAS";			
+		}
+		else if (categoriaSelec ==3 ) {
+			categoria="SÁNDWICHES";			
+		}
+		else if (categoriaSelec == 4 ) {
+			categoria="CARNES";			
+		}
+		else if (categoriaSelec == 5) {
+			categoria="PIZZAS";			
+		}
+		else if (categoriaSelec == 6 ) {
+			categoria="PASTAS";			
+		}
+		else if (categoriaSelec == 7) {
+			categoria="BEBIDAS";			
+		}
+		else if (categoriaSelec == 8) {
+			categoria="POSTRES";			
+		}
+	   
+	    tituloCategoria.setText(categoria);
+		Cursor cs = db.obtenerMenusConIdCategoria(categoriaSelec);
 		
 		if (cs != null) {
 		    while(cs.moveToNext()) {
