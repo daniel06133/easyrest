@@ -62,14 +62,14 @@ private void loadCategoryData() {
 
 		public CategoryAdapter() {
 			mGridData = mGridData1;
-			mGridData.add(new GridItem ("http://i1379.photobucket.com/albums/ah133/daniel0613/Entrada_zpslfqhwpmt.png","Entradas"));
-			mGridData.add(new GridItem ("http://i1379.photobucket.com/albums/ah133/daniel0613/Tablas_zpsusix7drj.png","Tablas"));
-			mGridData.add(new GridItem ("http://i1379.photobucket.com/albums/ah133/daniel0613/Sandwich_zpsqsqk8qkv.png","Sandwiches"));
-			mGridData.add(new GridItem ("http://i1379.photobucket.com/albums/ah133/daniel0613/Carnes_zpsmwrjd0do.png","Carnes"));
-			mGridData.add(new GridItem ("http://i1379.photobucket.com/albums/ah133/daniel0613/Pizza_zpsjnkuzdia.png","Pizzas"));
-			mGridData.add(new GridItem ("http://i1379.photobucket.com/albums/ah133/daniel0613/Pastas_zpsklotjjwq.png","Pastas"));
-			mGridData.add(new GridItem ("http://i1379.photobucket.com/albums/ah133/daniel0613/Bebida_zpsw8yww7oj.png","Bebidas"));
-			mGridData.add(new GridItem ("http://i1379.photobucket.com/albums/ah133/daniel0613/helado_zpstsnddaz7.png","Postres"));
+			mGridData.add(new GridItem ("http://i1379.photobucket.com/albums/ah133/daniel0613/Entrada_zpslfqhwpmt.png","ENTRADAS"));
+			mGridData.add(new GridItem ("http://i1379.photobucket.com/albums/ah133/daniel0613/Tablas_zpsusix7drj.png","TABLAS"));
+			mGridData.add(new GridItem ("http://i1379.photobucket.com/albums/ah133/daniel0613/Sandwich_zpsqsqk8qkv.png","SÁNDWICHES"));
+			mGridData.add(new GridItem ("http://i1379.photobucket.com/albums/ah133/daniel0613/Carnes_zpsmwrjd0do.png","CARNES"));
+			mGridData.add(new GridItem ("http://i1379.photobucket.com/albums/ah133/daniel0613/Pizza_zpsjnkuzdia.png","PIZZAS"));
+			mGridData.add(new GridItem ("http://i1379.photobucket.com/albums/ah133/daniel0613/Pastas_zpsklotjjwq.png","PASTAS"));
+			mGridData.add(new GridItem ("http://i1379.photobucket.com/albums/ah133/daniel0613/Bebida_zpsw8yww7oj.png","BEBIDAS"));
+			mGridData.add(new GridItem ("http://i1379.photobucket.com/albums/ah133/daniel0613/helado_zpstsnddaz7.png","POSTRES"));
 			
 			inflater = LayoutInflater.from(GridViewCategorias.this);
 		}
@@ -127,28 +127,28 @@ private void loadCategoryData() {
 		Integer idCategoria =0;
 		String nombreCategoria = categoriaSeleccionada.getTitle();
 		
-		if (nombreCategoria == "Entradas"){
+		if (nombreCategoria == "ENTRADAS"){
 			idCategoria=1;
 		}
-		else if (nombreCategoria == "Tablas") {
+		else if (nombreCategoria == "TABLAS") {
 			idCategoria=2;			
 		}
-		else if (nombreCategoria == "Sandwiches") {
+		else if (nombreCategoria == "SÁNDWICHES") {
 			idCategoria=3;			
 		}
-		else if (nombreCategoria == "Carnes") {
+		else if (nombreCategoria == "CARNES") {
 			idCategoria=4;			
 		}
-		else if (nombreCategoria == "Pizzas") {
+		else if (nombreCategoria == "PIZZAS") {
 			idCategoria=5;			
 		}
-		else if (nombreCategoria == "Pastas") {
+		else if (nombreCategoria == "PASTAS") {
 			idCategoria=6;			
 		}
-		else if (nombreCategoria == "Bebidas") {
+		else if (nombreCategoria == "BEBIDAS") {
 			idCategoria=7;			
 		}
-		else if (nombreCategoria == "Postres") {
+		else if (nombreCategoria == "POSTRES") {
 			idCategoria=8;			
 		}
 						
