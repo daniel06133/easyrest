@@ -6,7 +6,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-import com.example.proyectomoviles.GridViewAdapter.ImageLoadTask;
+//import com.example.proyectomoviles.GridViewAdapter.ImageLoadTask;
 import com.example.proyectomoviles.R.id;
 import com.example.proyectomoviles.basededatos.DataBaseHelper;
 
@@ -49,7 +49,7 @@ OnItemClickListener{
 	private Menu menuToShow;
 	private Intent IntentMenu;
 	private Intent intent2;
-	static GridViewActivity activityMenu;
+	//static GridViewActivity activityMenu;
 	private TextView tituloCategoria;
 
 	/** Called when the activity is first created. */
@@ -61,7 +61,7 @@ OnItemClickListener{
 		
 		db = new DataBaseHelper(this);	
 		adapter = new MenuAdapter();
-		activityMenu=this;
+		//activityMenu=this;
 		setListAdapter(adapter);
 		getListView().setOnItemClickListener(this);
 		loadMenuData();
@@ -284,9 +284,9 @@ OnItemClickListener{
 		IntentMenu= new Intent(this,Pedidos.class);
 	}
 	
-	public static GridViewActivity getInstance(){
+	/*public static GridViewActivity getInstance(){
 		return activityMenu;
-	}
+	}*/
 	
 
 
