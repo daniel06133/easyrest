@@ -42,7 +42,7 @@ import android.widget.AdapterView.OnItemClickListener;
 
 
 
-public class GridViewActivity extends ListActivity implements
+public class ListadoMenus extends ListActivity implements
 OnItemClickListener{
 	private DataBaseHelper db;
 	private MenuAdapter adapter;
@@ -125,7 +125,7 @@ OnItemClickListener{
 
 		public MenuAdapter() {
 			menus = new ArrayList<Menu>();
-			inflater = LayoutInflater.from(GridViewActivity.this);
+			inflater = LayoutInflater.from(ListadoMenus.this);
 		}
 
 		public void addMenu(Menu menu) {

@@ -18,9 +18,9 @@
         <activity 
             android:name=".Pedidos"></activity>
         <activity 
-            android:name=".GridItem"></activity>
+            android:name=".CategoriaItem"></activity>
         <activity 
-            android:name=".GridViewActivity"></activity>
+            android:name=".ListadoMenus"></activity>
         <activity 
             android:name=".GridViewAdapter"></activity>
         <activity 

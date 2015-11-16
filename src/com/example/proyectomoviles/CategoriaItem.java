@@ -1,12 +1,12 @@
 package com.example.proyectomoviles;
-public class GridItem {
+public class CategoriaItem {
     private String image;
     private String title;
 
-    public GridItem() {
+    public CategoriaItem() {
         super();
     }
-    public GridItem(String urlImagen,String descripcion)
+    public CategoriaItem(String urlImagen,String descripcion)
     {	
     	super();
     	image = urlImagen;
