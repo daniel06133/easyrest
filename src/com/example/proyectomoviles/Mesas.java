@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,9 +28,9 @@ import android.widget.AdapterView.OnItemLongClickListener;
 
 public class Mesas extends Activity implements OnItemClickListener,OnItemLongClickListener, android.view.View.OnClickListener {
 
-	private GridView mGridView;
+	private GridView gridViewMesas;
     private MesaAdapter adapter;
-    private ArrayList<Mesa> mGridMesas;
+    private ArrayList<Mesa> arrayMesas;
     Mesas mesa;
     
     @Override
@@ -37,16 +38,14 @@ public class Mesas extends Activity implements OnItemClickListener,OnItemLongCli
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.mesas);
 
-        mGridView = (GridView) findViewById(R.id.mesas);
+
+        gridViewMesas = (GridView) findViewById(R.id.mesas);
         mesa = this;
         
-        LinearLayout linearMesas = (LinearLayout) findViewById(R.id.linearLMesas);
-        
-        //Initialize with empty data
-        mGridMesas = new ArrayList<Mesa>();
+        arrayMesas = new ArrayList<Mesa>();
         adapter = new MesaAdapter();
-        mGridView.setAdapter(adapter);
-        mGridView.setOnItemClickListener(this);
+        gridViewMesas.setAdapter(adapter);
+        gridViewMesas.setOnItemClickListener(this);
         
         loadCategoryData();
                    
@@ -69,14 +68,14 @@ public class Mesas extends Activity implements OnItemClickListener,OnItemLongCli
 	}
 
 	class MesaAdapter extends BaseAdapter {
-		private ArrayList<Mesa> mGridData;
+		private ArrayList<Mesa> mesasData;
 		private LayoutInflater inflater;
 
 		public MesaAdapter() {
-			mGridData = mGridMesas;
+			mesasData = arrayMesas;
 		 for (int i = 0; i < 30; i++) 
 		 {
-			 mGridData.add(new Mesa(""));
+			 mesasData.add(new Mesa(""));
 		 }		
 		 
 			/**mGridData.add(new Mesa ("http://i1379.photobucket.com/albums/ah133/daniel0613/mesa11_zpshhecjwkf.png"));
@@ -110,12 +109,12 @@ public class Mesas extends Activity implements OnItemClickListener,OnItemLongCli
 
 		@Override
 		public int getCount() {
-			return mGridData.size();
+			return mesasData.size();
 		}
 
 		@Override
 		public Object getItem(int position) {
-			return mGridData.get(position);
+			return mesasData.get(position);
 		}
 
 		@Override
@@ -157,7 +156,7 @@ public class Mesas extends Activity implements OnItemClickListener,OnItemLongCli
 			} else {
 				holder = (Holder) convertView.getTag();
 			}
-			Mesa item = mGridData.get(position);
+			Mesa item = mesasData.get(position);
 			//setear imagen
 			//new AsyncImageLoader(item.getImage(), holder.imagen).execute();
 			
@@ -175,4 +174,6 @@ public class Mesas extends Activity implements OnItemClickListener,OnItemLongCli
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
+	
 }

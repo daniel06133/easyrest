@@ -9,9 +9,13 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class IniciarSesion extends Activity implements  android.view.View.OnClickListener
@@ -62,6 +66,10 @@ public class IniciarSesion extends Activity implements  android.view.View.OnClic
 		    {
 		    	Toast toast = Toast.makeText(this, "Usuario o contraseña inválidos.",
 						Toast.LENGTH_SHORT);
+		    	ViewGroup vg = (ViewGroup)toast.getView();
+				TextView msg = (TextView) vg.getChildAt(0);
+				msg.setTextSize(25);
+				toast.setGravity(Gravity.CENTER, 0, 0);
 				toast.show();
 		    }
 
@@ -74,6 +82,15 @@ public class IniciarSesion extends Activity implements  android.view.View.OnClic
 		List<ResolveInfo> list = packageManager.queryIntentActivities(intent,
 				PackageManager.MATCH_DEFAULT_ONLY);
 		return list.size() > 0;
+	}
+	
+	@Override
+	protected void onRestart() {
+		// TODO Auto-generated method stub
+ 
+		super.onRestart();
+	 	((TextView)findViewById(R.id.txtNombreUsuario)).setText("");
+    	((TextView)findViewById(R.id.txtContrasena)).setText("");
 	}
 
 }
